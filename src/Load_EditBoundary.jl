@@ -1,6 +1,7 @@
 #############################################
 #  Julia Packages
 #############################################
+import  Base.range
 # Text input and output
 using 	Printf, 
     	DelimitedFiles,
@@ -8,8 +9,7 @@ using 	Printf,
 using   Base64: stringmime
 using   Dates: format, now
 # Interactivity
-using	CairoMakie,
-        GLMakie,
+using	GLMakie,
         Makie.GeometryBasics,
         Colors,
         WebIO, 
@@ -25,73 +25,65 @@ using   LinearAlgebra.BLAS:     nrm2,
 using   LinearAlgebra: norm
 # Optimization
 using   Optim
-
-
 #############################################
 # UNAMalla Packages
 #############################################
-d = Sys.iswindows() ? "\\" : "/"
+include("data_structures/DATA_UNAMALLA.jl")
 
-dir = "data_structures"*d
-modules = ["DATA_UNAMALLA" ]
-include.(dir.*modules.*".jl")
+include("geometry/GET_NPTS.jl")
+include("geometry/AREA.jl")
+include("geometry/FOLDING.jl")
+include("geometry/DISTSEG.jl")
+include("geometry/SCALEINB2.jl")
+include("geometry/TRIANGLE_AREAS.jl")
+include("geometry/TRIANGLE_MEASURES.jl")
+include("geometry/REGION_INFO.jl")
+include("geometry/CHECK_HOLES.jl")
+include("geometry/FG_PERIMETER.jl")
+include("geometry/REVERSE_ORIENTATION.jl") 
 
-dir = "geometry"*d
-modules = ["GET_NPTS"
-           "AREA"
-           "REFLEX"
-           "ARCLENGTH"
-           "GET_ANGLES"
-           "FOLDING"
-           "DISTSEG"
-           "INPOLY"
-           "SCALEINB2"
-           "HULL"
-           "POCKETS"
-           "TRIANGLE_AREAS"
-           "TRIANGLE_RADIUS"
-           "REGION_INFO"
-           "CHECK_HOLES"
-           "FIND_SMALL_ANGLES"
-           "FIND_SMALL_SECTIONS"
-           "COLLAPSE_SMALL_GAPS"
-           "FG_PERIMETER" ]
-include.(dir.*modules.*".jl") 
+include("IO/GET_NAME.jl")
+include("IO/GET_PATH.jl")
+include("IO/REGIONIO.jl")
+include("IO/DELETE_REPTS.jl")
+include("IO/COPY_REGION.jl")
+include("IO/DEPURATION.jl")
+include("IO/GET_REGION.jl")
 
-dir = "IO"*d
-modules = [ "GET_NAME"
-            "GET_PATH"
-            "REGIONIO"
-            "DELETE_REPTS"
-            "COPY_REGION"
-            "DEPURATION"
-            "GET_REGION"
-            "IO_ORDER"]
-include.(dir.*modules.*".jl")
+include("contour_creator/OBS2XY.jl")
+include("contour_creator/BND_WINDICT.jl")
+include("contour_creator/ADD_HOLES.jl")
+include("contour_creator/CONTOUR_CREATOR.jl")
 
-dir = "contour_creator"*d
-modules = [ "OBS2XY"
-            "BND_WINDICT"
-            "ADD_HOLES"
-            "CONTOUR_CREATOR" ]
-include.(dir.*modules.*".jl")
+include("plot/PLOT_LAYOUT.jl")
+include("plot/PLOT_MEASURE.jl")
+include("plot/PLOT_REGION.jl")
+include("plot/MENUS.jl")
+include("plot/REGION_TABLES.jl")
+include("plot/MEASURE_TABLE.jl")
+include("plot/SHOW_REGION_INFO.jl")
+include("plot/THEREHOLD_TABLE.jl")
+include("plot/PLOT_SIMP_PER.jl")
 
+include("edit_boundary/POINT_ELIMINATION.jl")
+include("edit_boundary/MIN_PERIMETER.jl")
+include("edit_boundary/AUTO_SIMPLIFICATION.jl")
+include("edit_boundary/REMOVE_HOLES.jl")
+include("edit_boundary/EDIT_BOUNDARY.jl")
+include("edit_boundary/GET_TOLERANCES_SLIDER_VALUES.jl")
 
-dir = "plot"*d
-modules = [ "PLOT_LAYOUT"
-            "PLOT_MEASURE"
-            "PLOT_REGION"
-            "MENUS"
-            "REGION_TABLES"
-            "MEASURE_TABLE"
-            "SHOW_REGION_INFO"
-            ]
-include.(dir.*modules.*".jl")
+#=
+# set directory path 
+push!(LOAD_PATH,pwd())
+# load scripts
+include("Load_EditBoundary.jl")
+# load contour
+R = read_region()
+# contour test
+depuration!(R)
+# contour approximation
+edit_boundary(R)
 
-dir = "edit_boundary"*d
-modules = [     "POINT_ELIMINATION"
-                "MIN_PERIMETER"
-                "AUTO_SIMPLIFICATION"
-                "REMOVE_HOLES"
-                "EDIT_BOUNDARY" ]
-include.(dir.*modules.*".jl")
+push!(LOAD_PATH,pwd()); include("Load_EditBoundary.jl");
+R = read_region(); depuration!(R); edit_boundary(R);
+=#
