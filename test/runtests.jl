@@ -1,6 +1,10 @@
 using EditBoundary
 using Test
 
-@testset "EditBoundary.jl" begin
-    # Write your tests here.
+@testset "geometry" begin
+    @test 2 == 2
+end
+
+@testset "IO" begin
+    
 end
