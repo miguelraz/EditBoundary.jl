@@ -36,7 +36,7 @@
 		itfmin = 5
 
 		# perimeter
-		p₀ = perimeter(Ω)
+		p₀ = perim(Ω)
 		# boundary neighborhood radius
 		tolsmt *= p₀
 		# rearrage initial contour
@@ -78,6 +78,9 @@
 					infovec::Vector{String},
 					tol::Number
 	        		)
+
+		# test for digital curve
+		checkint = sum(isinteger.(R.E)) == prod(size(R.E))
 
 		str  = 	"Smoothing | "*
 				"ENTER to update the tolerance | "*
@@ -131,6 +134,20 @@
 	    on(bta.clicks) do n
 	    	# smoothing
 	    	min_perimeter!(Rcopy, R, tol[])
+	    	# rounding for digital curves
+	    	# also delete repeated points
+			#=
+			if checkint 
+				R.E .= round.(R.E)
+				R.E  = del_repts(R.E)
+				if ~isempty(R.H)
+          			for k in keys(R.H)
+          				R.H[k] .= round.(R.H[k])
+          				R.H[k]  = del_repts(R.H[k])
+          			end
+          		end
+			end
+			=#
 	        # update figure
 	        DCρ[0][] = p2fp(R.E)
 	        if ~isempty(R.H)
