@@ -1,4 +1,5 @@
 module EditBoundary
+__precompile__(false)
 
 # Write your package code here.
 
@@ -6,29 +7,29 @@ module EditBoundary
 #  Julia Packages
 #############################################
 # Text input and output
-using 	Printf, 
-    	DelimitedFiles,
-    	FileIO
-using   Base64: stringmime
-using   Dates: format, now
+using Printf,
+    DelimitedFiles,
+    FileIO
+using Base64: stringmime
+using Dates: format, now
 # Interactivity
-using	CairoMakie,
-        GLMakie,
-        Makie.GeometryBasics,
-        Colors,
-        WebIO, 
-	PlotlyJS
+using CairoMakie,
+    GLMakie,
+    Makie.GeometryBasics,
+    Colors,
+    WebIO,
+    PlotlyJS
 # Pop up a window to select a file
-using   Gtk
-using   IJulia: clear_output	
+using Gtk
+using IJulia: clear_output
 # Linear algebra
-using   LinearAlgebra.BLAS:     nrm2, 
-                                dot, 
-                                blascopy!, 
-                                scal!
-using   LinearAlgebra: norm
+using LinearAlgebra.BLAS: nrm2,
+    dot,
+    blascopy!,
+    scal!
+using LinearAlgebra: norm
 # Optimization
-using   Optim
+using Optim
 
 
 #############################################
