@@ -1,5 +1,3 @@
-
-
 	function get_region()
 		# read region file
 		R = read_region()
