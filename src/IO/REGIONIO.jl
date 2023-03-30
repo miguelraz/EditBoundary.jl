@@ -399,7 +399,7 @@
     R.idreg  = 0
     R.idcuts = Matrix{Int64}(undef,0,3)
     # open a window to save file
-    filepath = Gtk_save_dialog("save region",R.name*".xyz")
+    filepath = save_file(pwd(); filterlist="xyz")
     # update name
     R.name  = get_name(filepath)[1]
     # delimiter
