@@ -1,104 +1,10 @@
-	# these routines require GTK
+	get_dir() = pick_folder(pwd())
 
-	"""
-	Gtk_save_dialog(title,filename)
-	"""
-	function Gtk_save_dialog(title::String,filename::String)
-		
-	    dlg = GtkFileChooserDialog( 
-	    			title, 
-					GtkNullContainer(), 
-					Gtk.GConstants.GtkFileChooserAction.SAVE,
-                    (("_Cancel", Gtk.GConstants.GtkResponseType.CANCEL),
-                     ("_Save",   Gtk.GConstants.GtkResponseType.ACCEPT)) 
-	            )
-	    dlgp = GtkFileChooser(dlg)
-	    ccall(  (:gtk_file_chooser_set_current_name, Gtk.libgtk), 
-	            Nothing, 
-	            (Ptr{GObject}, Ptr{UInt8}), 
-	            dlgp, 
-	            filename
-	         )
-	    ccall( (:gtk_file_chooser_set_do_overwrite_confirmation, Gtk.libgtk), 
-	            Nothing, 
-	            (Ptr{GObject}, Cint), 
-	            dlg, 
-	            true
-	        )
-	    response = run(dlg)
-	    if response == Gtk.GConstants.GtkResponseType.ACCEPT
-	        selection = Gtk.bytestring(Gtk.GAccessor.filename(dlgp))
-	    else
-	        selection = ""
-	    end
-	    Gtk.destroy(dlg)
-	    return selection
-	end
+	get_path_img() = pick_file(pwd(); filterlist="png,jpeg,jpg")
 
-	get_path(title::T,ext::NTuple{N,T}) where {N,T<:String} =
-	open_dialog(title,GtkNullContainer(),ext)
+	get_path_geo() = pick_file(pwd(); filterlist="geo")
 
-	get_dir() = open_dialog("Choose Folder", 
-							 action = GtkFileChooserAction.SELECT_FOLDER 
-							)
-
-	function get_path_cut()::String
-		title = "Choose cut file"
-		ext   = ("*.txt",)
-		return get_path(title,ext)
-	end
-
-	function get_path_img()::String
-		title = "Choose image file"
-		ext   = ("*.png","*.jpeg","*.jpg",)
-		return get_path(title,ext)
-	end
-
-	function get_path_red()::String
-		title = "Choose RED file"
-		ext   = ("*.red",)
-		return get_path(title,ext)
-	end
-
-	function get_path_msh()::String
-		title = "Choose MSH file"
-		ext   = ("*.msh",)
-		return get_path(title,ext)
-	end
-
-	function get_path_mesh()::String
-		title = "Choose MSH file"
-		ext   = ("*.msh","*.red",)
-		return get_path(title,ext)
-	end
-
-	function get_path_geo()::String
-		title = "Choose GEO file"
-		ext   = ("*.geo",)
-		return get_path(title,ext)
-	end
-
-	function get_path_region()::String
-
-		title = "Choose region file"
-		name  = "GEO, XYZ formats"
-		ext   = ( GtkFileFilter("*.geo, *.xyz", name=name), )
-		return open_dialog(title,GtkNullContainer(),ext)
-	end
-
-
-	"""
-	path = get_path_figures(name)
-	"""
-	function get_path_figures(name::String)::String
-	    delim = Sys.iswindows() ? "\\" : "/"
-	    path  = pwd()*delim*"tests"*delim*name
-	    ~isdir(path) && mkdir(path)
-	    path *= delim*"pdf"
-	    ~isdir(path) && mkdir(path)
-	    path *= delim
-	    return path
-	end
+	get_path_region() = pick_file(pwd(); filterlist="geo,xyz")
 
 	"""
 	dirpath, filestrings = get_dirfiles(name,ext)
