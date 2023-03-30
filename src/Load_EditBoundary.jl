@@ -11,8 +11,9 @@ import Dates: format, now
 import GLMakie: Node, Observable, Figure
 import GeometryBasics.Point
 # Pop up a window to select a file
-import Gtk: GConstants, bytestring, destroy, GtkNullContainer, GtkFileChooserDialog
-import Gtk: GtkFileChooser, GtkFileChooserAction, GtkFileFilter, GObject
+# No more Gtk depedencies
+# Now NativeFileDialog replaces Gtk for pick and save files
+using NativeFileDialog
 # Linear algebra
 using LinearAlgebra: norm
 # Optimization
@@ -75,9 +76,8 @@ include("IO/IO_ORDER.jl")
 # GET_NAME
 export get_name
 # GET_PATH
-export Gtk_save_dialog, get_path, get_dir, get_path_cut, get_path_img, get_path_red
-export get_path_msh, get_path_mesh, get_path_geo, get_path_region, get_path_figures
-export get_dirfiles
+# Gtk_save_dialog, get_dirpath, get_path_red, get_path_msh, get_path mesh, get_path_cut were removed
+export get_path, get_path_img, get_path_geo, get_path_region, get_dir, get_dirfiles
 # REGIONIO - TODO
 export readXYZ, readPOLY, readGEO, read_region, path_poly, saveXYZ, save_region
 export ask_save_region, save_new_region
