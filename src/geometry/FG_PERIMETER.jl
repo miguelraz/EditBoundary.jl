@@ -1,21 +1,8 @@
-
-	#=
-    Required subroutines
-    	LinearAlgebra: norm
-	=#
-
-	"""
-	gety(v,i,m)
-	"""
 	gety(v::Vector{Float64},i::Int64,m::Int64)::Float64 = v[i+m]
-
-	"""
-	getxy(v,i,m)
-	"""
 	getxy(v::Vector{Float64},i::Int64,m::Int64)::Vector{Float64} = v[[i;i+m]]
 
 	"""
-	perim(v)
+	    perim(v)
 
 	Compute the perimeter of a simplgety-connected polgetygonal region
 	"""
@@ -31,7 +18,7 @@
 	end
 
 	"""
-	∂perim(v)
+	    ∂perim(v)
 
 	Let x be the two column arragety of contour coordinates.
 
@@ -72,15 +59,10 @@
 	    return g
 	end	
 
-	"""
-	fg!(F, G, v)
-	"""
 	function fg!(F, G, v)
-       
    		   if G != nothing
                G[:] = ∂perim(G[:],v)
            end
-
            if F != nothing
                return perim(v)
            end

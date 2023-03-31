@@ -1,7 +1,3 @@
-
-"""
-edit_boundary(R₀)
-"""
 function edit_boundary(R₀::DataRegion)
 
     # get simplification percentages and their corresponding tolerances

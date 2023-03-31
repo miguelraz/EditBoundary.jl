@@ -1,7 +1,4 @@
 
-	"""
-	min_perimeter(xᵢₙᵢ, x₀, p₀, tolsmt, itmax, itfmin)
-	"""
 	function min_perimeter( xᵢₙᵢ::Vector{Float64}, 
 							x₀::Vector{Float64}, 
 						 	p₀::Float64, tolsmt::Float64, 
@@ -26,10 +23,6 @@
 		return Optim.minimizer(optim_data)
  	end
 
-
-	"""	
-	min_perimeter(Ω,tolsmt)	
-	"""
 	function min_perimeter(Ω::Matrix{Float64}, tolsmt::Float64)::Matrix{Float64}
 
 		itmax  = 50
@@ -51,9 +44,6 @@
 	end
 
 
-	"""
-	min_perimeter!(R₀,R,tol)
-	"""
 	function min_perimeter!(R₀::DataRegion, R::DataRegion, tolsmt::Float64)
 
         R.E = min_perimeter(R₀.E,tolsmt)

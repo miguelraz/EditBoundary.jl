@@ -1,7 +1,3 @@
-
-	"""
-	basic_region_info(Ω)
-	"""
 	function basic_region_info(Ω::Matrix{Float64})
 
 		nΩ = size(Ω,1)
@@ -56,9 +52,6 @@
 		return nΩ, nreflex, nsmallθ, nrem, pΩ, αΩ
 	end
 
-	"""
-	basic_region_info(R)
-	"""
 	function basic_region_info(R::DataRegion)
 		# labels for region table
 		labels = [  "Region", "Holes", "Ext Pts", "Hole Pts",

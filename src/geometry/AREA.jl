@@ -1,13 +1,13 @@
 
   """
-  J₂(x)
+    J₂(x)
 
   Linear Map: (x₁,x₂) ↦ (x₂,-x₁).
   """
   J₂(x::Vector{Float64})::Vector{Float64} = [x[2]; -x[1]]
 
   """
-  α(P,Q,R)
+    α(P,Q,R)
 
   Evaluation of the area functional at the triangle PQR.
   """
@@ -15,7 +15,7 @@
   (Q[1]-P[1])*(R[2]-P[2]) + (Q[2]-P[2])*(P[1]-R[1])
 
   """
-  α(Ω,p,q,r)
+    α(Ω,p,q,r)
 
   Compute the area of the triangle PQR in polygonal region Ω, 
   where P = Ω[p], Q = Ω[q], R = Ω[r]
@@ -24,7 +24,7 @@
   α(Ω[p,:],Ω[q,:],Ω[r,:])
 
   """
-  α(Ω)
+    α(Ω)
 
   Compute the area of a simply-connected polygonal region Ω: v₁,v₂,...,vₙ.
 
@@ -38,10 +38,6 @@
     return 0.5Σ
   end
 
-
-  """
-  cell_index_bnd(idc, idx)
-  """
   function cell_index_bnd(idc::Matrix{Int64}, idx::Vector{Int64})
     
       list = Array{Int64}([])
@@ -61,17 +57,11 @@
 
     INPUT
         pts   -->  coordinate matrix of mesh points
-
         idc   -->  index matrix of points per quad
-
         list  -->  list of slected quads
-
     OUTPUT
-
         nc    -->  number of non-convex quads
-
         αmin  -->  minimum area of the mesh triangles
-
 	"""
   function infoα(pts::Matrix{Float64}, 
                  idc::Matrix{Int64}, 
@@ -120,9 +110,6 @@
     return nc, αmin, αmax₋, ncvec
   end
 
-  """
-  infoα(pts,idc,tolcvx)
-  """
   function infoα(pts::Matrix{Float64}, 
                  idc::Matrix{Int64}, 
                  tolcvx::Float64
@@ -132,9 +119,6 @@
     return infoα(pts, idc, list, tolcvx)
   end
 
-  """
-  infoα(pts, idc,m, n)
-  """
   function infoα(pts::Matrix{Float64}, 
                  idc::Matrix{Int64}, 
                  m::Int64, 

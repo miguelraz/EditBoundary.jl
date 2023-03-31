@@ -1,8 +1,3 @@
-
-
-  """
-  readXYZ(A)
-  """
   function readXYZ(A::Array{Any})
 
       sₙ = 2
@@ -23,7 +18,7 @@
   end
 
   """
-  readPOLY(A)
+    readPOLY(A)
 
   Get two-column array of countour points coordinates
   """
@@ -57,7 +52,7 @@
   end  
 
   """
-  readGEO(A)
+    readGEO(A)
 
   Get two-column array of countour points coordinates
 
@@ -104,10 +99,6 @@
     return DataRegion(E,H,idcuts,idreg,name)
   end  
 
-
-  """
-  read_region(path)
-  """
   function read_region(path::String ="")
 
     if isempty(path) 
@@ -136,10 +127,6 @@
     return R
   end 
 
-
-  """
-  path_poly = save_poly(R)
-  """
   function save_poly(R::DataRegion)
       
       nH = length(R.H)
@@ -186,10 +173,6 @@
       return filepath
   end
 
-
-  """
-  saveXYZ(R)
-  """
   function saveXYZ(R::DataRegion)
     # delimiter
     delim = Sys.iswindows() ? "\\" : "/"
@@ -202,9 +185,6 @@
     saveXYZ(R,dirpath)
   end
 
-  """
-  saveXYZ(Ω,name,dirpath)
-  """
   function saveXYZ(Ω::Union{Matrix{Float64},Matrix{Int64}},
                    name::String, 
                    dirpath::String)
@@ -220,9 +200,6 @@
     end
   end
 
-  """
-  saveXYZ(R,dirpath)
-  """
   function saveXYZ(R::DataRegion, dirpath::String)
 
     # file name
@@ -255,7 +232,7 @@
   end
 
   """
-  save_region(R,dirpath)
+    save_region(R,dirpath)
 
   Save polygonal region in GEO format of GMSH
   """
@@ -350,9 +327,6 @@
     end
   end
 
-  """
-  save_region(R)
-  """
   function save_region(R::DataRegion)
     
     # delimiter
@@ -366,9 +340,6 @@
     save_region(R,dirpath)
   end
 
-  """
-  save_region(Dreg,nold)
-  """
   function save_region(Dreg::Dict{Int64,DataRegion},
                        nold::Int64
                       )
@@ -390,9 +361,6 @@
       foreach(save_region,values(Dreg))
   end
 
-  """
-  ask_save_region(R)
-  """
   function ask_save_region(R::DataRegion)
 
     # reset identifier and cuts 
@@ -411,9 +379,6 @@
     return dirpath*R.name
   end
 
-  """
-  save_new_region(R)
-  """
   function save_new_region(R::DataRegion)
     # delimiter
     delim = Sys.iswindows() ? "\\" : "/"

@@ -1,13 +1,7 @@
-"""
-remove!(v,i)
-"""
 function remove!(v::Union{Vector{Float64},Vector{Int64}}, i::Int64)
     v[i:end-1] = v[i+1:end]
 end
 
-"""
-shift(i,n)
-"""
 function shift(i::Int64, n::Int64)::Int64
     j = i % n
     (i ≤ 0) && (j += n)
@@ -17,12 +11,11 @@ end
 
 
 """
-del_repts(Ω,ltol)
+    del_repts(Ω,ltol)
 
 Delete repeated points in a polygon using the length of segments 
 """
 function del_repts(Ω::Matrix{Float64}, ltol::Float64)::Matrix{Float64}
-
     pΩ = 0.0
     nΩ = size(Ω, 1)
     lvec = zeros(nΩ)
@@ -50,7 +43,7 @@ function del_repts(Ω::Matrix{Float64}, ltol::Float64)::Matrix{Float64}
 end
 
 """
-del_repts!(R,ltol)
+    del_repts!(R,ltol)
 
 Delete repeated points in a polygon using the length of segments 
 """
@@ -73,10 +66,6 @@ function del_repts!(R::DataRegion, ltol::Float64=1e-10)
     n_diff > 0 && display("$n_diff repeated pts deleted")
 end
 
-
-"""
-del_pts(method, Ω, tol)
-"""
 function del_pts(method::Function, Ω::Matrix{Float64}, tol::Number)
 
     n = size(Ω, 1)
@@ -130,10 +119,6 @@ function del_pts(method::Function, Ω::Matrix{Float64}, tol::Number)
     return Ω[idx, :]
 end
 
-
-"""
-del_pts!(method, R, tol)
-"""
 function del_pts!(method::Function, R::DataRegion, tol::Number)
     R.E = del_pts(method, R.E, tol)
     if ~isempty(R.H)
@@ -143,9 +128,6 @@ function del_pts!(method::Function, R::DataRegion, tol::Number)
     end
 end
 
-"""
-del_pts!(method, R₀, R, tol)
-"""
 function del_pts!(method::Function, R₀::DataRegion, R::DataRegion, tol::Number)
     R.E = del_pts(method, R₀.E, tol)
     if ~isempty(R.H)
@@ -155,11 +137,6 @@ function del_pts!(method::Function, R₀::DataRegion, R::DataRegion, tol::Number
     end
 end
 
-
-
-"""
-del_pts!(R₀, slider_range, tol_range)
-"""
 function del_pts!(R₀::DataRegion,
     slider_range::AbstractVector,
     tol_range::AbstractVector

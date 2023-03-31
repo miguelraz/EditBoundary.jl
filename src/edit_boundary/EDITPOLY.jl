@@ -1,6 +1,5 @@
-
 """
-edit_bnd3(plt,tab,R,tlabels,infovec,nH₀)
+    edit_bnd3(plt,tab,R,tlabels,infovec,nH₀)
 
 Routine for interactive edition of polygons by mouse clicks
 """

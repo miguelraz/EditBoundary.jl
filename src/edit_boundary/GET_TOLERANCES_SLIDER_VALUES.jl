@@ -1,13 +1,11 @@
-
     """
     tol2per(R₀,tol_range)
 
     Get simplification percentages at the given simplification tolerances
 
     INPUT
-
-    - R₀          contour 
-    - tol_range   tolerance range
+        - R₀          contour 
+        - tol_range   tolerance range
     """
     function tol2per(R₀::DataRegion, tol_range::Vector{Float64})::Vector{Float64}
          # array to store the percentage of remaining points
@@ -29,9 +27,6 @@
          return simp_per
     end
 
-    """
-    get_tolerances_slider_values(R)
-    """
     function get_tolerances_slider_values(R::DataRegion)
         # tolerance range
         tol_range = [100:-10:10; 8:-2:2; 0.8:-0.2:0.2; 0.08:-0.02:0.02]

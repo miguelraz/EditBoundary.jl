@@ -1,7 +1,3 @@
-
-	"""
-	list = read_order(name)
-	""" 
 	function read_order(name::String)::Vector{Int64}
 
 		delim = Sys.iswindows() ? "\\" : "/"
@@ -16,9 +12,6 @@
 		return list
 	end
 
-	"""
-	save_order(list,name)
-	""" 
 	function save_order(list::Vector{Int64},name::String)
 
 		nR = length(list)

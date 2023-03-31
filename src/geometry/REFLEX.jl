@@ -1,12 +1,9 @@
-
-
 	"""
-	reflex(Ω)
+	    reflex(Ω)
 
 	Count and get the indexes of the reflex vertices of a simple polygon
 	"""
 	function reflex(Ω::Matrix{Float64})
-
 		NR 	 = 0
 		list = Array{Int64}([])
 		# number of boundary points

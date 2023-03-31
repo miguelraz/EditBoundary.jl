@@ -1,7 +1,3 @@
-
-  """
-  get_name(path)
-  """
   function get_name(path::String)
 
     delimiter = Sys.iswindows() ? "\\" : "/"

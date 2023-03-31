@@ -1,7 +1,3 @@
-
-"""
-bnd_window(fig,str)
-"""
 function bnd_window(fig::Figure, str::String)
     return Axis(fig[1, 1],
         xlabel=str,
@@ -22,9 +18,6 @@ function bnd_window(fig::Figure, str::String)
     )
 end
 
-"""
-region_window(fig,str,n)
-"""
 function region_window(fig::Figure, str::String, n::Int64)
     ax = Axis(fig[1, 1:n],
         xlabel=str,
@@ -44,9 +37,6 @@ function region_window(fig::Figure, str::String, n::Int64)
     return ax
 end
 
-"""
-bnd_dict(R)
-"""
 function bnd_dict(R::DataRegion)
 
     nH = length(R.H)

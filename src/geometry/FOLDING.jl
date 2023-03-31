@@ -1,7 +1,4 @@
 
-	"""
-	iflag = seg_intersect(p,q,r,s,tol=1e-8)
-	"""
 	function seg_intersect( p::Vector{Float64},
 	                        q::Vector{Float64},
 	                        r::Vector{Float64},
@@ -30,9 +27,6 @@
 	     return iflag
 	end
 
-	"""
-	iflag = folding(n, x, y, label)
-	"""
 	function folding(n::Int64, 
 	                 x::Vector{Float64},
 	                 y::Vector{Float64},
@@ -77,9 +71,6 @@
 	    return iflag
 	end
 
-	"""
-	iflag = folding(R,iflag)
-	"""
 	function folding(R::DataRegion,
 					 iflag::Bool = false
 					)

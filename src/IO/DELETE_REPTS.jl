@@ -5,9 +5,6 @@ Required subroutines
 	ARCLENGTH: lengths
 =#
 
-"""
-σ = perm_repts(vlen,n_old,n_new,tol)
-"""
 function perm_repts( vlen::Vector{Float64},
                      n_old::Int64,
                      n_new::Int64,
@@ -53,9 +50,6 @@ function perm_repts( vlen::Vector{Float64},
     return σ
 end
 
-"""
-Ω, cuts = delete_repts(Ω, cuts, tol)
-"""
 function delete_repts(Ω::Matrix{Float64},
                       cuts::Matrix{Int64},
                       tol::Float64
@@ -77,9 +71,6 @@ function delete_repts(Ω::Matrix{Float64},
     return Ω, cuts
 end
 
-"""
-Dregs = delete_repts(Dregs, tol)
-"""
 function delete_repts(Dregs::Dict{Int64,DataRegion},
                       tol::Float64
                      )
