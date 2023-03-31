@@ -8,7 +8,7 @@ import DelimitedFiles: readdlm
 import Base64: stringmime
 import Dates: format, now
 # Interactivity
-import GLMakie: Node, Observable, Figure
+import GLMakie: Observable, Figure
 import GeometryBasics.Point
 # Pop up a window to select a file
 # No more Gtk depedencies

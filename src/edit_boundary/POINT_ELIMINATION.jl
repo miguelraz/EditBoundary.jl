@@ -66,7 +66,7 @@ function del_repts!(R::DataRegion, ltol::Float64=1e-10)
     n_diff > 0 && display("$n_diff repeated pts deleted")
 end
 
-function del_pts(method::Function, Ω::Matrix{Float64}, tol::Number)
+function del_pts(method::F, Ω::Matrix{Float64}, tol::Number) where {F}
 
     n = size(Ω, 1)
     jₘᵢₙ = 0
@@ -119,7 +119,7 @@ function del_pts(method::Function, Ω::Matrix{Float64}, tol::Number)
     return Ω[idx, :]
 end
 
-function del_pts!(method::Function, R::DataRegion, tol::Number)
+function del_pts!(method::F, R::DataRegion, tol::Number) where {F}
     R.E = del_pts(method, R.E, tol)
     if ~isempty(R.H)
         for Hₖ in values(R.H)
@@ -128,7 +128,7 @@ function del_pts!(method::Function, R::DataRegion, tol::Number)
     end
 end
 
-function del_pts!(method::Function, R₀::DataRegion, R::DataRegion, tol::Number)
+function del_pts!(method::F, R₀::DataRegion, R::DataRegion, tol::Number) where {F}
     R.E = del_pts(method, R₀.E, tol)
     if ~isempty(R.H)
         for k in keys(R.H)
