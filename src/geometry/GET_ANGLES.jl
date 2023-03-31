@@ -1,6 +1,6 @@
 
 	"""
-	get_cos(P,Q,R)
+	    get_cos(P,Q,R)
 
 	compute cosine of the angle using the dot product
 	"""
@@ -25,9 +25,6 @@
 	    return uᵀv
 	end
 
-	"""
-	get_angle(P,Q,R)
-	"""
 	function get_angle(	P::Vector{Float64},
 						Q::Vector{Float64},
 						R::Vector{Float64})
@@ -54,9 +51,6 @@
 		return θ
 	end
 
-    """
-	get_angle(Ω)
-	"""
 	function get_angle(Ω::Matrix{Float64})
 	    
 	    nΩ = size(Ω,1)

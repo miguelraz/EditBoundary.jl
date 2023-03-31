@@ -77,7 +77,7 @@ include("IO/IO_ORDER.jl")
 export get_name
 # GET_PATH
 # Gtk_save_dialog, get_dirpath, get_path_red, get_path_msh, get_path mesh, get_path_cut were removed
-export get_path, get_path_img, get_path_geo, get_path_region, get_dir, get_dirfiles
+export get_path, get_path_img, get_path_geo, get_path_region, get_dir
 # REGIONIO - TODO
 export readXYZ, readPOLY, readGEO, read_region, path_poly, saveXYZ, save_region
 export ask_save_region, save_new_region

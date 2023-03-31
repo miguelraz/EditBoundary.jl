@@ -1,6 +1,3 @@
-	"""
-	triangle_radius(Ω)
-	"""
 	function triangle_radius(Ω::Matrix{Float64})::Vector{Float64}
 
 		# number of points in the exterior boundary
@@ -24,9 +21,6 @@
 		return rvec
 	end
 
-    """
-    triangle_radius(R)
-    """
     function triangle_radius(R::DataRegion)::Vector{Float64}
         rvec = triangle_radius(R.E)
         if ~isempty(R.H)
@@ -37,9 +31,6 @@
         return rvec
     end
 
-    """
-    triangle_radius_sorted(R)
-    """
     function triangle_radius_sorted(R::DataRegion)::Vector{Float64}
         rvec = triangle_radius(R)
         sort!(rvec,rev=true)

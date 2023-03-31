@@ -1,6 +1,3 @@
-"""
-remove_holes!(H)
-"""
 function remove_holes!(H::Dict{Int64,Matrix{Float64}})
 
     counter = 1

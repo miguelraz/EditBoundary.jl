@@ -1,12 +1,6 @@
-    # these routines require GLMakie and GTK
-
-    """
-    contour_creator(bnd)
-    """
     function contour_creator( bnd::Dict{Int64,VecPts} )
 
         n  = length(bnd)
-
         idreg   = 0
         idcuts  = Array{Int64}(undef,0,2)
         name    = "polygon_"*format(now(),"dd-u-yy-HHMM")
@@ -25,9 +19,6 @@
         display("region saved in tests folder as: "*name)
     end
 
-    """
-    contour_creator()
-    """
     function contour_creator()
 
         counter = GLMakie.Node(0)
@@ -188,9 +179,6 @@
         return Dict(k => Dpts[k][] for k in keys(Dpts))
     end
 
-    """
-    contour_creator_menu()
-    """
     function contour_creator_menu()
 
         display("Contour Creator: Program for interactive creation of polygonal regions")

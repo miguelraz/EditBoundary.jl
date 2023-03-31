@@ -1,7 +1,4 @@
 
-	"""
-	lengths(Ω)
-	"""
 	function lengths(Ω::Matrix{Float64})::Vector{Float64}
 		dx = Ω[[2:end;1],1] - Ω[1:end,1]
 	    dy = Ω[[2:end;1],2] - Ω[1:end,2]
@@ -9,9 +6,9 @@
 	end
 
 	"""
-	arclength(C)
+	    arclength(C)
 
-    Compute the arclength of a polygonal curve
+    Compute the arclength of a polygonal curve C
 	"""
 	function arclength(C::Matrix{Float64})::Float64 
 
@@ -24,7 +21,7 @@
 	end
 
 	"""
-	perimeter(Ω)
+	    perimeter(Ω)
 
     Compute the perimeter of a simply-connected polygonal region
 	"""
@@ -32,7 +29,7 @@
 	
 
 	"""
-	arclength(C, i, j)
+	    arclength(C, i, j)
 
 	Let v₁,…,vₙ be the points of the polygonal curve C
 
@@ -55,7 +52,7 @@
 	end
 
   	"""
-  	arclength(C, i, p, q)
+  	    arclength(C, i, p, q)
 
   	Let v₁,…,vₙ be the points of the polygonal curve C
 
@@ -72,9 +69,6 @@
     	return min(ℓpi,ℓiq)
   	end
 
-	"""
-	arclength(Ω,id)
-	"""
 	function arclength(Ω::Matrix{Float64},id::Array{Int64})
 
 		id = id[[1:end;1]]

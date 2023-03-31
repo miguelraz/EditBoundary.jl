@@ -1,7 +1,3 @@
-
-	"""
-	scaleinB₂(Ω)
-	"""
 	function scaleinB₂(Ω::Matrix{Float64})::Float64
 
 		# number of points

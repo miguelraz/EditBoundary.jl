@@ -1,5 +1,5 @@
 	"""
-	reverse_orientation!(Ω)
+	    reverse_orientation!(Ω)
 
 	Reverse orientation of a clockwise oriented polygon 
 	using its triangle areas
@@ -15,12 +15,11 @@
 	end
 
 	"""
-	reverse_orientation!(R)
+	    reverse_orientation!(R)
 
 	Reverse orientation of a polygonal region using its triangle areas
 	"""
 	function reverse_orientation!(R::DataRegion)
-
 		reverse_orientation!(R.E)
 		if ~isempty(R.H)
 			for k in keys(R.H)

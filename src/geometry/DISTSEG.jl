@@ -22,5 +22,4 @@
 		    return norm(p-proy)
 	end
 
-	distseg(C::Matrix{Float64}, i::Int64, p::Int64, q::Int64) = 
-	distseg(C[p,:],C[q,:],C[i,:])
+distseg(C::Matrix{Float64}, i::Int64, p::Int64, q::Int64) = distseg(C[p,:],C[q,:],C[i,:])

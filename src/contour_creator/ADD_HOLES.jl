@@ -1,7 +1,3 @@
-
-    """
-    get_centroid(Ω)
-    """
     get_centroid(Ω::Matrix{Float64}) =
     vec(sum(Ω;dims=1)/size(Ω,1)) 
 
@@ -15,9 +11,6 @@
         return c
     end
 
-	"""
-	add_hole(R,H)
-	"""
 	function add_hole(	R::DataRegion,
 						H::Matrix{Float64}
 					 )
@@ -159,9 +152,6 @@
         return Dpts
 	end
 
-    """
-    add_hole()
-    """
     function add_hole()
         display("Press ENTER to choose a region")
         sleep(1)

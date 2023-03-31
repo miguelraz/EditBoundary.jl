@@ -1,7 +1,3 @@
-
-    """
-    check_holes(R)
-    """
     function check_holes(R::DataRegion, flag::Bool=false)::Bool
 
         iR = R.idreg
@@ -14,9 +10,6 @@
         return flag
     end
 
-    """
-    flag = check_holes(Dreg)
-    """
     function check_holes(Dreg::Dict{Int64,DataRegion})::Bool
         flag = false
         for iR in keys(Dreg)

@@ -1,6 +1,6 @@
 
 	"""
-	get_cos(P,Q,R)
+	    get_cos(P,Q,R)
 
 	Compute cos(Q) in the triangle PQR using the dot product
 	"""
@@ -26,14 +26,14 @@
 	end
 
 	"""
-	areas(P,Q,R)
+	    areas(P,Q,R)
 
 	Area of triangle PQR
 	"""
 	areas(P::Vector{Float64}, Q::Vector{Float64}, R::Vector{Float64}) = 0.5abs(α(P,Q,R))
 
 	"""
-	areasine(P,Q,R)
+	    areasine(P,Q,R)
 
 	Area of triangle PQR weighted by the sine of the interior angle
 	"""
@@ -48,7 +48,7 @@
 	end
 
 	"""
-	radiusine(A,B,C)
+	    radiusine(A,B,C)
 
 	Get double product inradius r × circunradius R weighted
 	by the sine of the interior angle
@@ -68,8 +68,4 @@
         return s 
 	end
 
-	"""
-	carnot(P,Q,R)
-	"""
-	carnot(P::Vector{Float64},Q::Vector{Float64},R::Vector{Float64}) =
-	get_cos(P,Q,R) + get_cos(Q,R,P) + get_cos(R,P,Q) - 1
+carnot(P::Vector{Float64},Q::Vector{Float64},R::Vector{Float64}) = get_cos(P,Q,R) + get_cos(Q,R,P) + get_cos(R,P,Q) - 1

@@ -1,16 +1,14 @@
 
 	"""
-	is_left(): tests if a point is Left|On|Right of an infinite line.
+	    is_left(): tests if a point is Left|On|Right of an infinite line.
 
-	   Input: three points P0, P1, and P2
-
-	   Return: >0 for P2 left of the line through P0 and P1
-
-	           =0 for P2 on the line
-
-	           <0 for P2 right of the line
-
-	   "Area of 2D and 3D Triangles and Polygons" 2001
+	INPUT
+        Three points P0, P1, and P2
+	OUTPUT
+        >0 for P2 left of the line through P0 and P1
+        =0 for P2 on the line
+        <0 for P2 right of the line
+	"Area of 2D and 3D Triangles and Polygons" 2001
 	"""
 	function is_left(P₀::Vector{Float64}, 
 					P₁::Vector{Float64}, 
@@ -23,19 +21,14 @@
 	end
 
 	"""
-	inpoly(P,q)
+	    inpoly(P,q)
 
 	Winding number test for a point q in a polygon P
-
 	wn = the winding number (=0 only if q is outside P)
 	INPUT
-
 		P   ->  vertex points of a polygon
-
 		q   ->  1D array with point coordinates
-	
 	OUTPUT
-
 		inside (true if wn = 0; false otherwise)
 	"""
 	function inpoly(P::Matrix{Float64},q::Vector{Float64})::Bool
@@ -65,8 +58,4 @@
 	    return (wn ≠ 0) ? true : false
 	end
 
-	"""
-	inpoly(E,H)
-	"""
-	inpoly(E::Matrix{Float64},H::Matrix{Float64})::Vector{Bool} = 
-	[inpoly(E,H[i,:]) for i = 1:size(H,1)]
+inpoly(E::Matrix{Float64},H::Matrix{Float64})::Vector{Bool} = [inpoly(E,H[i,:]) for i = 1:size(H,1)]

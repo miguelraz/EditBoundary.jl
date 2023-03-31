@@ -1,7 +1,3 @@
-
-	"""
-	Rcopy = copy_region(R)
-	"""
 	function copy_region(R::DataRegion)::DataRegion
 	    
 	    H = Dict{Int64,Matrix{Float64}}()
