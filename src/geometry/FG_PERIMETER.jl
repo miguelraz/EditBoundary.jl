@@ -60,10 +60,10 @@
 	end	
 
 	function fg!(F, G, v)
-   		   if G != nothing
+   		   if G !== nothing
                G[:] = ∂perim(G[:],v)
            end
-           if F != nothing
+           if F !== nothing
                return perim(v)
            end
 	end

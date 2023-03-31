@@ -28,16 +28,18 @@ include("geometry/SCALEINB2.jl")
 include("geometry/TRIANGLE_AREAS.jl")
 include("geometry/TRIANGLE_MEASURES.jl")
 include("geometry/REGION_INFO.jl")
-include("geometry/CHECK_HOLES.jl")
+#include("geometry/CHECK_HOLES.jl")
 include("geometry/FG_PERIMETER.jl")
 include("geometry/REVERSE_ORIENTATION.jl")
+#include("geometry/INPOLY.jl")
+#include("geometry/REFLEX.jl")
 
 # ARCLENGTH.jl
 export lengths, arclength, perimeter, arclength
 # AREA.jl
 export J₂, α, cell_index_bnd, infoα
 # CHECK_HOLES
-export check_holes
+#export check_holes
 # COLLAPSE_SMALL_GAPS
 export collapse_small_gaps
 # DISTSEG 
@@ -57,13 +59,13 @@ export get_npts
 # HULL 
 export getx, gety, orientation, convex_hull
 # INPOLY 
-export is_left, inpoly
+#export is_left, inpoly
 # POCKETS 
 export idpockets, pockets
 # REFLEX 
-export reflex
+#export reflex
 # REGION_INFO 
-export basic_region_info
+#export basic_region_info
 
 include("IO/GET_NAME.jl")
 include("IO/GET_PATH.jl")

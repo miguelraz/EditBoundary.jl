@@ -1,16 +1,13 @@
-
 	function seg_intersect( p::Vector{Float64},
 	                        q::Vector{Float64},
 	                        r::Vector{Float64},
 	                        s::Vector{Float64},
-	                        tol::Float64 = 1e-8
-	                      )
+	                        tol::Float64 = 1e-8)
 	    
 	    D = (q[1]-p[1])*(s[2]-r[2]) - (q[2]-p[2])*(s[1]-r[1])
 	    
 	    if abs(D) ≤ tol
-	        iflag = 0
-	        return iflag
+	        return 0
 	    end
 	    
 	     u = (r[1]-p[1])*(q[2]-p[2]) - (r[2]-p[2])*(q[1]-p[1])
@@ -71,10 +68,7 @@
 	    return iflag
 	end
 
-	function folding(R::DataRegion,
-					 iflag::Bool = false
-					)
-	    
+	function folding(R::DataRegion, iflag::Bool = false)
 	   	x = R.E[:,1]
 	    y = R.E[:,2]
 	    nΩ = size(R.E,1)
@@ -96,7 +90,3 @@
 
 	    return iflag
 	end
-
-
-
-	

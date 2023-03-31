@@ -52,6 +52,7 @@
 		return nΩ, nreflex, nsmallθ, nrem, pΩ, αΩ
 	end
 
+    #=
 	function basic_region_info(R::DataRegion)
 		# labels for region table
 		labels = [  "Region", "Holes", "Ext Pts", "Hole Pts",
@@ -78,3 +79,4 @@
 		infovec = [name; string.(ndata); @sprintf " %1.3e" αΩ]
 		return labels, infovec
 	end
+    =#
