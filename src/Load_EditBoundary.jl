@@ -92,6 +92,7 @@ export get_region
 # IO_ORDER
 export read_order, save_order
 
+#=
 include("contour_creator/OBS2XY.jl")
 include("contour_creator/BND_WINDICT.jl")
 include("contour_creator/ADD_HOLES.jl")
@@ -106,6 +107,7 @@ export bnd_window, region_window, bnd_dict
 export get_centroid, add_hole
 # CONTOUR_CREATOR
 export contour_creator, contour_creator_menu
+=#
 
 include("edit_boundary/POINT_ELIMINATION.jl")
 include("edit_boundary/MIN_PERIMETER.jl")
