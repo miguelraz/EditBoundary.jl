@@ -4,7 +4,7 @@
 	"""
 	    perim(v)
 
-	Compute the perimeter of a simplgety-connected polgetygonal region
+	Compute the perimeter of a simply-connected polygonal region
 	"""
 	function perim(v::Vector{Float64})
 	
