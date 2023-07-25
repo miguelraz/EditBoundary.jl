@@ -1,7 +1,7 @@
 name = "EditBoundary"
 uuid = "8bb5e942-8cec-4ba7-bbd0-1456b2d7b960"
 authors = ["numerico "]
-version = "0.1.0"
+version = "1.0.0"
 
 [deps]
 Base64 = "2a0f44e3-6c83-55bd-87e4-b1978d98bd5f"
@@ -15,3 +15,12 @@ NativeFileDialog = "e1fe445b-aa65-4df4-81c1-2041507f0fd4"
 Optim = "429524aa-4258-5aef-a3af-852621145aeb"
 Printf = "de0858da-6303-5e67-8744-51eddeeeb8d7"
 Test = "8dfed614-e22c-5e08-85e1-65c5234f0b40"
+
+[compat]
+DelimitedFiles = "1.8.5"
+GLMakie = "0.8.4"
+GeometryBasics = "0.4.6"
+ImageMagick = "1.2.2"
+NativeFileDialog = "0.2.1"
+Optim = "1.7.5"
+julia = "1"
