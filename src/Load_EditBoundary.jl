@@ -7,9 +7,12 @@ import Printf: @sprintf
 import DelimitedFiles: readdlm
 import Base64: stringmime
 import Dates: format, now
-# Interactivity
-import GLMakie: Observable, Figure
-import GeometryBasics.Point
+# Interactivity using GLMakie
+# only load the necessary routines of GLMakie
+import GLMakie: Observable, Figure, Observable, Axis, DataAspect, Keyboard
+import GLMakie: Menu, Label, events, on, lift, Slider, Button, Textbox
+import GLMakie: hidespines!, lines!, reset_limits!, set_close_to!
+import GeometryBasics.Point, GeometryBasics.Point2f
 # Pop up a window to select a file
 # No more Gtk depedencies
 # Now NativeFileDialog replaces Gtk for pick and save files
@@ -18,7 +21,17 @@ using NativeFileDialog
 using LinearAlgebra: norm
 # Optimization
 using Optim
+
+# load the main data structure
 include("data_structures/DATA_UNAMALLA.jl")
+export DataRegion
+# load routines for our figure layout in GLMakie 
+include("contour_creator/OBS2XY.jl")
+include("contour_creator/BND_WINDICT.jl")
+# BND_WINDICT.jl
+export region_window
+# OBS2XY.jl
+export bnd2obs, bnd2obsp
 
 include("geometry/GET_NPTS.jl")
 include("geometry/AREA.jl")
@@ -35,13 +48,15 @@ include("geometry/REVERSE_ORIENTATION.jl")
 #include("geometry/REFLEX.jl")
 
 # ARCLENGTH.jl
-export lengths, arclength, perimeter, arclength
+export lengths, arclength, perim, arclength
 # AREA.jl
 export J₂, α, cell_index_bnd, infoα
 # CHECK_HOLES
 #export check_holes
 # COLLAPSE_SMALL_GAPS
 export collapse_small_gaps
+# DELETE_REPTS
+export del_repts!
 # DISTSEG 
 export distseg
 # FG_PERIMETER
@@ -56,6 +71,8 @@ export seg_intersect!, folding
 export get_cos, get_angle
 # GET_NPTS 
 export get_npts
+# REVERSE_ORIENTATION
+export reverse_orientation!
 # HULL 
 export getx, gety, orientation, convex_hull
 # INPOLY 
@@ -70,7 +87,7 @@ export idpockets, pockets
 include("IO/GET_NAME.jl")
 include("IO/GET_PATH.jl")
 include("IO/REGIONIO.jl")
-include("IO/DELETE_REPTS.jl")
+# include("IO/DELETE_REPTS.jl")
 include("IO/COPY_REGION.jl")
 include("IO/GET_REGION.jl")
 include("IO/IO_ORDER.jl")
@@ -121,7 +138,8 @@ include("edit_boundary/EDITPOLY.jl")
 
 # POINT_ELIMINATION
 # TODO - rename these asap
-export remove_holes!, remove!, areas, areasine, radiusine, carnot, del_pts, del_pts!
+# use del_repts! from edit_boundary/POINT_ELIMINATION.jl instead of delete_repts from IO/DELETE_REPTS
+export remove_holes!, remove!, areas, areasine, radiusine, carnot, del_pts, del_pts!, del_repts! 
 # MIN_PERIMETER
 export min_perimeter, min_perimeter!
 # AUTO_SIMPLIFICATION

@@ -29,7 +29,7 @@
 		itfmin = 5
 
 		# perimeter
-		p₀ = perim(Ω)
+		p₀ = perim(vec(Ω)) # the argument of perim is Vector not DataRegion
 		# boundary neighborhood radius
 		tolsmt *= p₀
 		# rearrage initial contour
