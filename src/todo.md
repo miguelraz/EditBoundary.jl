@@ -7,6 +7,7 @@
   * 1 sola ventana
 * archivos de prueba de la pagina
 * Interfaz grafica en Makie y botones
+  * uso de MakieDraw
 * Acelerar el parseo
 
 ## Dudas
