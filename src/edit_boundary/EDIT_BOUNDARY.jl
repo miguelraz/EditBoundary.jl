@@ -55,11 +55,11 @@ function figure_layout(Dobs_ini, Dobs_new, slider_range, methods_labels, info_la
 end
 
 """
-    update_figure!(D::Dict{Int64,Observables}, R::DataRegion)
+    update_figure!(D, R)
 
     Update dictionary of observables with the region struct
 """
-function update_figure!(D::Dict{Int64,Observables}, R::DataRegion)
+function update_figure!(D, R)
     D[0][] = p2fp(R.E)
     if ~isempty(R.H)
         for k in keys(R.H)
@@ -96,7 +96,7 @@ function comparison_label(R0::DataRegion, R::DataRegion)
     n0 = get_npts(R0) # for the initial region
     n = get_npts(R)   # for the approximation
     # percentage of deleted points
-    per_delpts = round(100(1 - n / n₀), digits=1)
+    per_delpts = round(100(1 - n / n0), digits=1)
     # get string for the perimeter
     perim_old = @sprintf "%1.2e" perim(vec(R0.E)) # for the initial region
     perim_new = @sprintf "%1.2e" perim(vec(R.E))  # for the approximation
@@ -144,18 +144,18 @@ function poly_smoothing!(R0, Rcopy, R, Dobs, ax, smooth_tol)
 end
 
 """
-    poly_simplify!(R0, Rcopy, R, Dobs, ax, slider_range, tol_range, per)
+    poly_simplify!(R0, Rcopy, R, Dobs, ax, simp_method, slider_range, tol_range, per)
 
     Polygon simplification by Area or Radius Tests
 """
-function poly_simplify!(R0, Rcopy, R, Dobs, ax, slider_range, tol_range, per)
+function poly_simplify!(R0, Rcopy, R, Dobs, ax, simp_method, slider_range, tol_range, per)
     # get simplification therehold
     idx = findfirst(x -> x == per, slider_range)
     simp_tol = tol_range[idx]
     # simplification
-    if simp_menu[] == "Radius test"
+    if simp_method[] == "Radius test"
         del_pts!(radiusine, Rcopy, R, simp_tol)
-    elseif simp_menu[] == "Area test"
+    elseif simp_method[] == "Area test"
         del_pts!(areasine, Rcopy, R, simp_tol)
     end
     # update observables for the contours
@@ -224,6 +224,6 @@ function edit_boundary(R0::DataRegion)
     end
     # move slider for polygon simplification        	
     lift(sl.value) do per
-        poly_simplify!(R0, Rcopy, R, Dobs_new, ax, slider_range, tol_range, per)
+        poly_simplify!(R0, Rcopy, R, Dobs_new, ax, simp_method, slider_range, tol_range, per)
     end
 end

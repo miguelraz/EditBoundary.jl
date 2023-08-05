@@ -1,5 +1,5 @@
 module EditBoundary
-__precompile__(false)
+#__precompile__(false)
 
 include("Load_EditBoundary.jl")
 
