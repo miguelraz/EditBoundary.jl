@@ -61,7 +61,7 @@
 
 	function fg!(F, G, v)
    		   if G !== nothing
-               G[:] = ∂perim(G[:],v)
+               G[:] = @views ∂perim(G[:],v)
            end
            if F !== nothing
                return perim(v)
