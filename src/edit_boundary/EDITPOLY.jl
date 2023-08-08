@@ -1,3 +1,5 @@
+# FIXME MakieDraw
+#=
 """
     edit_bnd3(plt,tab,R,tlabels,infovec,nH₀)
 
@@ -21,6 +23,7 @@ function edit_bnd3(
           " R reset view | " *
           " S save"
     fig = Figure()
+    # FIXME get_axis no existe
     ax = get_axis(fig, str)
     ax.aspect = DataAspect()
     # initialize dictionaries of indexes 
@@ -31,7 +34,7 @@ function edit_bnd3(
     Dpts = Dict{Int64,Observable{VecPts}}()
     Dflpts = Dict{Int64,Observable{VecPts}}()
     Dpts[0] = bnd2obs(R.E)
-    Dflpts[0] = bnd2obs(R.E[[1, end], :])
+    Dflpts[0] = @views bnd2obs(R.E[[1, end], :])
     # fill dictionaries of the boundary points
     if nH > 0
         for i = 1:nH
@@ -41,7 +44,8 @@ function edit_bnd3(
         end
     end
     # draw boundary
-    for k in list
+    # FIXME IVAN
+    for i in list
         scatterlines!(Dpts[i],
             color=:blue,
             markercolor=:blue,
@@ -101,16 +105,17 @@ function edit_bnd3(
                         [ptm]
                     ]
                 else
-                    ptm = 0.5sum(Ω[iₘᵢₙ:iₘᵢₙ+1, :]; dims=1)
+                    ptm = 0.5sum(@views Ω[iₘᵢₙ:iₘᵢₙ+1, :]; dims=1)
 
-                    Dpts[kₘᵢₙ][] = [Dpts[kₘᵢₙ][][1:iₘᵢₙ]
+                    Dpts[kₘᵢₙ][] = @views [Dpts[kₘᵢₙ][][1:iₘᵢₙ]
                         Point2f0[ptm]
-                        Dpts[kₘᵢₙ][][iₘᵢₙ+1:end]
+                        @views Dpts[kₘᵢₙ][][iₘᵢₙ+1:end]
                     ]
                 end
                 # Press - to delete the nearest point to mouse position
             elseif event.key == Keyboard.kp_subtract
 
+                # FIXME mouseposition no existe
                 new_point = [mouseposition(ax.scene)]
                 pt = new_point[1][1:2]
 
@@ -146,6 +151,7 @@ function edit_bnd3(
     on(events(ax.scene).mousebutton, priority=2) do event
 
         # move point on right click
+        #FIXME Mouse no existe
         if event.button == Mouse.right
 
             new_point = [mouseposition(ax.scene)]
@@ -186,9 +192,11 @@ function edit_bnd3(
                 ]
             end
             Dflpts[kₘᵢₙ][] = [first(Dpts[kₘᵢₙ][]), last(Dpts[kₘᵢₙ][])]
+            #FIXME Consume existe
             return Consume(true)
         end
         return Consume(false)
     end
     return Dpts
 end
+=#

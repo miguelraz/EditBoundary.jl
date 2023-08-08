@@ -11,6 +11,7 @@
         return c
     end
 
+    #=
 	function add_hole(	R::DataRegion,
 						H::Matrix{Float64}
 					 )
@@ -163,3 +164,4 @@
         Rnew = get_region()
         add_hole(R,Rnew.E)
     end
+    =#
