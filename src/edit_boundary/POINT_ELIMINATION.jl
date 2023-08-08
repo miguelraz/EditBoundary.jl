@@ -137,6 +137,7 @@ function del_pts!(method::F, R₀::DataRegion, R::DataRegion, tol::Number) where
     end
 end
 
+#=
 function del_pts!(R₀::DataRegion,
     slider_range::AbstractVector,
     tol_range::AbstractVector
@@ -144,8 +145,8 @@ function del_pts!(R₀::DataRegion,
 
     nH = length(R₀.H)
     n₀ = get_npts(R₀)
-    p₀ = @sprintf "%1.2e" perim(R₀)
-    α₀ = @sprintf "%1.2e" α(R₀)
+    p₀ = @sprintf "%1.2e" perim(vec(R₀.E))
+    α₀ = @sprintf "%1.2e" α(R₀.E)
     label = R₀.name * " | $n₀ pts | 0 % del pts | Perim: $p₀"
     simp_methods = ["weighted radius test", "weighted area test"]
     # create a copy of the region
@@ -247,3 +248,4 @@ function del_pts!(R₀::DataRegion,
     end
 
 end
+=#

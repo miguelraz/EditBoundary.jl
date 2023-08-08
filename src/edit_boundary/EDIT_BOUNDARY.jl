@@ -47,6 +47,8 @@ function figure_layout(Dobs_ini, Dobs_new, slider_range, methods_labels, info_la
         validator=Float64,
         tellwidth=false
     )
+    #_x = global copy(tb)
+    #@show "holi"
     # draw buttoms
     bt_smooth = Button(fig[2, 6], label="Smooth")
     bt_undo = Button(fig[2, 7], label="Undo")

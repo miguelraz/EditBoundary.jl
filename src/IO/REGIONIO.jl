@@ -100,7 +100,6 @@ function readGEO(A::AbstractArray)
 end
 
 function read_region(path::String="")
-
   if isempty(path)
     path = get_path_region()
   end
@@ -120,7 +119,6 @@ function read_region(path::String="")
     elseif ext == "poly"
       E, H = readPOLY(region_array)
     end
-    nh = length(H)
     R = DataRegion(E, H, idcuts, idreg, name)
   end
 

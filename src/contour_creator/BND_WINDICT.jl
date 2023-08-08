@@ -5,8 +5,8 @@ function bnd_window(fig::Figure, str::String)
         yminorticksvisible=true,
         xminorgridvisible=true,
         yminorgridvisible=true,
-        xminorticks=IntervalsBetween(11),
-        yminorticks=IntervalsBetween(11),
+        #xminorticks=IntervalsBetween(11),
+        #yminorticks=IntervalsBetween(11),
         xminorgridwidth=1,
         yminorgridwidth=1,
         xgridwidth=1,
@@ -44,13 +44,13 @@ function bnd_dict(R::DataRegion)
     Dpts = Dict{Int64,Observable{VecPts}}()
     Dflpts = Dict{Int64,Observable{VecPts}}()
     Dpts[0] = bnd2obs(R.E)
-    Dflpts[0] = bnd2obs(R.E[[1, end], :])
+    Dflpts[0] = @views bnd2obs(R.E[[1, end], :])
     # fill dictionaries of the boundary points
     if nH > 0
         for i = 1:nH
             push!(list, i)
             Dpts[i] = bnd2obs(R.H[i])
-            Dflpts[i] = bnd2obs(R.H[i][[1, end], :])
+            Dflpts[i] = @views bnd2obs(R.H[i][[1, end], :])
         end
     end
     return Dpts, Dflpts, list
