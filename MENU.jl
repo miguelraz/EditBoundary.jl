@@ -1,18 +1,13 @@
-push!(LOAD_PATH, pwd());
-include("Load_EditBoundary.jl");
-
-@time contour_creator_menu();
-
-"""
-edit_boundary(R₀)
-"""
-edit_boundary(R0)
-
 ########### 
 ### META:
-using EditBoundary
+# open a file dialog to choose a XYZ file in the folder src/regions 
+# and read the file into a julia struct
 R = read_region()
+# check polygon orientation
 reverse_orientation!(R)
+# delete repeated points
 del_repts!(R)
+# check for self-intersecions
 folding(R)
+# open interactive window in GLMakie
 edit_boundary(R)

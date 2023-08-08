@@ -6,4 +6,5 @@ To use this package, open Julia and run
 using Pkg
 Pkg.add("EditBoundary")
 using EditBoundary
+include("MENU.jl")
 ```

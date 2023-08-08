@@ -5,7 +5,7 @@ function edit_boundary(R₀::DataRegion)
 
     nH = length(R₀.H)
     n₀ = get_npts(R₀)
-    perim₀ = @sprintf "%1.2e" perim(R₀)
+    perim₀ = @sprintf "%1.2e" perim(vec(R₀.E)) # the argument of perim is Vector not DataRegion
     label = R₀.name * " | $nH Holes | $n₀ pts | 0 % del pts | Perim: $perim₀"
     simp_methods = ["Radius test", "Area test"]
     # create two copies of the region
@@ -115,7 +115,7 @@ function edit_boundary(R₀::DataRegion)
         # percentage of deleted points
         new_per = round(100(1 - n / n₀), digits=1)
         # perimeter of the smoothed contour 
-        perims = @sprintf "%1.2e" perim(R)
+        perims = @sprintf "%1.2e" perim(vec(R.E))
         # update labels
         ax.xlabel = R₀.name *
                     " | $nH Holes | $n of $n₀ pts | $(new_per) % del pts " *
@@ -148,7 +148,7 @@ function edit_boundary(R₀::DataRegion)
         # percentage of deleted points
         new_per = round(100(1 - n / n₀), digits=1)
         # perimeter of the simplified contour 
-        perims = @sprintf "%1.2e" perim(R)
+        perims = @sprintf "%1.2e" perim(vec(R.E))
         # update labels
         ax.xlabel = R₀.name *
                     " | $nH Holes | $n of $n₀ pts | $(new_per) % del pts " *
