@@ -31,6 +31,7 @@ export region_window
 # OBS2XY.jl
 export bnd2obs, bnd2obsp
 
+#include("geometry/ARCLENGTH.jl")
 include("geometry/GET_NPTS.jl")
 include("geometry/AREA.jl")
 include("geometry/FOLDING.jl")
@@ -46,13 +47,11 @@ include("geometry/REVERSE_ORIENTATION.jl")
 #include("geometry/REFLEX.jl")
 
 # ARCLENGTH.jl
-export lengths, arclength, perim, arclength
+#export lengths, arclength, perim, arclength
 # AREA.jl
-export J₂, α, cell_index_bnd, infoα
+export J₂, α
 # CHECK_HOLES
 #export check_holes
-# COLLAPSE_SMALL_GAPS
-export collapse_small_gaps
 # DELETE_REPTS
 export del_repts!
 # DISTSEG 
@@ -60,23 +59,19 @@ export distseg
 # FG_PERIMETER
 export gety, getxy, perim, ∂perim, fg!
 # FIND_SMALL_ANGLES 
-export modn, find_small_angles
-# FIND_SMALL_ANGLES
-export find_small_sections
+#export modn
 # FOLDING 
-export seg_intersect!, folding
+export folding
 # GET_ANGLES 
-export get_cos, get_angle
+#export get_cos, get_angle
 # GET_NPTS 
 export get_npts
 # REVERSE_ORIENTATION
 export reverse_orientation!
-# HULL 
-export getx, gety, orientation, convex_hull
 # INPOLY 
 #export is_left, inpoly
 # POCKETS 
-export idpockets, pockets
+#export pockets
 # REFLEX 
 #export reflex
 # REGION_INFO 
@@ -89,21 +84,22 @@ include("IO/REGIONIO.jl")
 include("IO/COPY_REGION.jl")
 include("IO/GET_REGION.jl")
 include("IO/IO_ORDER.jl")
+#include("IO/REGION_INFO.jl")
 
 # GET_NAME
 export get_name
 # GET_PATH
 # Gtk_save_dialog, get_dirpath, get_path_red, get_path_msh, get_path mesh, get_path_cut were removed
-export get_path, get_path_img, get_path_geo, get_path_region, get_dir
+export get_path_img, get_path_geo, get_path_region, get_dir
 # REGIONIO - TODO
-export readXYZ, readPOLY, readGEO, read_region, path_poly, saveXYZ, save_region
+export readXYZ, readPOLY, readGEO, read_region, saveXYZ, save_region
 export ask_save_region, save_new_region
 # DELETE_REPTS
-export perm_repts, delete_repts
+#export perm_repts, delete_repts
 # COPY_REGION
 export copy_region
 # DEPURATION
-export depuration
+#export depuration
 # GET_REGION
 export get_region
 # IO_ORDER
@@ -115,7 +111,7 @@ include("edit_boundary/AUTO_SIMPLIFICATION.jl")
 include("edit_boundary/REMOVE_HOLES.jl")
 include("edit_boundary/EDIT_BOUNDARY.jl")
 include("edit_boundary/GET_TOLERANCES_SLIDER_VALUES.jl")
-include("edit_boundary/EDITPOLY.jl")
+#include("edit_boundary/EDITPOLY.jl")
 
 # POINT_ELIMINATION
 # TODO - rename these asap
@@ -133,4 +129,4 @@ export edit_boundary
 export tol2per, get_tolerances_slider_values
 # EDIT_POLY
 # TODO - WTF IS THIS
-export edit_bnd3
+#export edit_bnd3
