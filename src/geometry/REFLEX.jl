@@ -1,3 +1,4 @@
+ #=
 	"""
 	    reflex(Ω)
 
@@ -25,3 +26,4 @@
 		end
 		return list, NR		
 	end
+=#

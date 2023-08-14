@@ -1,4 +1,4 @@
-
+#=
 	"""
 	    is_left(): tests if a point is Left|On|Right of an infinite line.
 
@@ -59,3 +59,4 @@
 	end
 
 inpoly(E::Matrix{Float64},H::Matrix{Float64})::Vector{Bool} = [inpoly(E,H[i,:]) for i = 1:size(H,1)]
+=#

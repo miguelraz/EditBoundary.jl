@@ -1,3 +1,4 @@
+    #=
     get_centroid(Ω::Matrix{Float64}) =
     vec(sum(Ω;dims=1)/size(Ω,1)) 
 
@@ -164,4 +165,5 @@
         Rnew = get_region()
         add_hole(R,Rnew.E)
     end
+    =#
     =#

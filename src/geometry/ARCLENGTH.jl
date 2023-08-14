@@ -2,6 +2,7 @@
 	    arclength(C)
 
     Compute the arclength of a polygonal curve C
+	C has 2 columns
 	"""
 	function arclength(C::Matrix{Float64})::Float64 
 

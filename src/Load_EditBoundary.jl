@@ -9,7 +9,7 @@ import Base64: stringmime
 import Dates: format, now
 # Interactivity using GLMakie
 # only load the necessary routines of GLMakie
-import GLMakie: Observable, Figure, Observable, Axis, DataAspect, Keyboard
+import GLMakie: Observable, Figure, Axis, DataAspect, Keyboard
 import GLMakie: Menu, Label, events, on, lift, Slider, Button, Textbox
 import GLMakie: hidespines!, lines!, reset_limits!, set_close_to!
 import GeometryBasics.Point, GeometryBasics.Point2f
@@ -110,23 +110,6 @@ export depuration
 export get_region
 # IO_ORDER
 export read_order, save_order
-
-#=
-include("contour_creator/OBS2XY.jl")
-include("contour_creator/BND_WINDICT.jl")
-include("contour_creator/ADD_HOLES.jl")
-include("contour_creator/CONTOUR_CREATOR.jl")
-
-# OBS2XY
-# TODO - perf - use tuples?
-export VecPts, p2f, p2f1, p2fp, bnd2obs, bnd2obs1, bnd2obsp, obs2bnd, obs2xy, obs2xy
-# BND_WINDICT
-export bnd_window, region_window, bnd_dict
-# ADD_HOLES
-export get_centroid, add_hole
-# CONTOUR_CREATOR
-export contour_creator, contour_creator_menu
-=#
 
 include("edit_boundary/POINT_ELIMINATION.jl")
 include("edit_boundary/MIN_PERIMETER.jl")
