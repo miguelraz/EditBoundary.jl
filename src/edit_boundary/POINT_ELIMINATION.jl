@@ -1,5 +1,5 @@
-function remove!(v::Union{Vector{Float64},Vector{Int64}}, i::Int64)
-    v[i:end-1] = v[i+1:end]
+function remove!(v::AbstractVector{T}, i::Int64) where T
+    v[i:end-1] = @views v[i+1:end]
 end
 
 function shift(i::Int64, n::Int64)::Int64
@@ -75,20 +75,20 @@ function del_pts(method::F, Ω::Matrix{Float64}, tol::Number) where {F}
     μvec = zeros(n)
     list = collect(1:n)
 
-    μvec[1] = method(Ω[n, :], Ω[1, :], Ω[2, :])
+    μvec[1] = @views method(Ω[n, :], Ω[1, :], Ω[2, :])
     μvec[1] < μₘᵢₙ && (μₘᵢₙ = μvec[1];
     jₘᵢₙ = 1)
     μave += μvec[1]
     for i = 2:n-1
         # triangle measure
-        μvec[i] = method(Ω[i-1, :], Ω[i, :], Ω[i+1, :])
+        μvec[i] = @views method(Ω[i-1, :], Ω[i, :], Ω[i+1, :])
         # update smallest measure
         μvec[i] < μₘᵢₙ && (μₘᵢₙ = μvec[i];
         jₘᵢₙ = i)
         # update average measure
         μave += μvec[i]
     end
-    μvec[n] = method(Ω[n-1, :], Ω[n, :], Ω[1, :])
+    μvec[n] = @views method(Ω[n-1, :], Ω[n, :], Ω[1, :])
     μvec[n] < μₘᵢₙ && (μₘᵢₙ = μvec[n];
     jₘᵢₙ = n)
     μave += μvec[n]
@@ -107,18 +107,19 @@ function del_pts(method::F, Ω::Matrix{Float64}, tol::Number) where {F}
         i₊₁ = list[j₊₁]
         i₊₂ = list[j₊₂]
 
-        μvec[j₋₁] = method(Ω[i₋₂, :], Ω[i₋₁, :], Ω[i₊₁, :])
-        μvec[j₊₁] = method(Ω[i₋₁, :], Ω[i₊₁, :], Ω[i₊₂, :])
+        μvec[j₋₁] = @views method(Ω[i₋₂, :], Ω[i₋₁, :], Ω[i₊₁, :])
+        μvec[j₊₁] = @views method(Ω[i₋₁, :], Ω[i₊₁, :], Ω[i₊₂, :])
 
         n -= 1
         remove!(μvec, jₘᵢₙ)
         remove!(list, jₘᵢₙ)
-        μₘᵢₙ, jₘᵢₙ = findmin(μvec[1:n])
+        μₘᵢₙ, jₘᵢₙ = @views findmin(μvec[1:n])
     end
     idx = list[1:n]
-    return Ω[idx, :]
+    return @views Ω[idx, :]
 end
 
+#=
 function del_pts!(method::F, R::DataRegion, tol::Number) where {F}
     R.E = del_pts(method, R.E, tol)
     if ~isempty(R.H)
@@ -127,6 +128,7 @@ function del_pts!(method::F, R::DataRegion, tol::Number) where {F}
         end
     end
 end
+=#
 
 function del_pts!(method::F, R₀::DataRegion, R::DataRegion, tol::Number) where {F}
     R.E = del_pts(method, R₀.E, tol)

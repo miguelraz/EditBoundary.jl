@@ -53,7 +53,7 @@
 	Get double product inradius r × circunradius R weighted
 	by the sine of the interior angle
 	"""
-	function radiusine(A::Vector{Float64},B::Vector{Float64},C::Vector{Float64})
+	function radiusine(A::AbstractVector{T},B::AbstractVector{T},C::AbstractVector{T}) where T
         a = norm(B-C)
         b = norm(A-C)
         c = norm(A-B)
