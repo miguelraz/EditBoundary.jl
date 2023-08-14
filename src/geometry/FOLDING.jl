@@ -72,9 +72,7 @@ function folding(R::DataRegion, iflag::Bool=false)
     x = R.E[:, 1]
     y = R.E[:, 2]
     nΩ = size(R.E, 1)
-    iR = R.idreg
     label = "self-intersection: "
-    (iR ≠ 0) && (label *= "region $iR → ")
     labelE = label * "exterior boundary → segments "
     folding(nΩ, x, y, labelE) && (iflag = true)
 

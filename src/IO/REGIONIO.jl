@@ -1,4 +1,4 @@
-function readXYZ(A::Array{Any})
+function readXYZ(A)
 
   sₙ = 2
   H = Dict{Int64,Matrix{Float64}}([])
@@ -22,7 +22,7 @@ end
 
 Get two-column array of countour points coordinates
 """
-function readPOLY(A::Array{Any})
+function readPOLY(A)
   # number of holes
   nh = A[1, 1] - 1
   # number of points of exterior boundary
@@ -58,7 +58,7 @@ Get two-column array of countour points coordinates
 
 from GEO file of GMSH
 """
-function readGEO(A::AbstractArray)
+function readGEO(A)
 
   id₁ = findfirst(x -> x == "//region", A)
   id₂ = findfirst(x -> x == "//idreg", A)
@@ -85,18 +85,19 @@ function readGEO(A::AbstractArray)
   delete!(H, 0)
 
   if isnothing(id₄)
-    idcuts = Matrix{Int64}(undef, 0, 2)
+    #idcuts = Matrix{Int64}(undef, 0, 2)
   else
     nc = A[id₄[1], 2]
-    idcuts = Matrix{Int64}(undef, nc, 2)
+    #idcuts = Matrix{Int64}(undef, nc, 2)
     counter = 1
     for i in id₄[1] .+ (1:nc)
-      idcuts[counter, :] = Int64.(A[i, 2:3])
+      #idcuts[counter, :] = Int64.(A[i, 2:3])
       counter += 1
     end
   end
 
-  return DataRegion(E, H, idcuts, idreg, name)
+  #return DataRegion(E, H, idcuts, idreg, name)
+  return DataRegion(E, H, name)
 end
 
 function read_region(path::String="")
@@ -110,16 +111,17 @@ function read_region(path::String="")
   if ext == "geo"
     R = readGEO(region_array)
   else
-    idreg = 0
-    idcuts = Matrix{Int64}(undef, 0, 2)
-    if ext == "con"
-      E, H = readCON(region_array)
-    elseif ext == "xyz"
+    #idreg = 0
+    #idcuts = Matrix{Int64}(undef, 0, 2)
+    #if ext == "con"
+    #  #E, H = readCON(region_array)
+    if ext == "xyz"
       E, H = readXYZ(region_array)
     elseif ext == "poly"
       E, H = readPOLY(region_array)
     end
-    R = DataRegion(E, H, idcuts, idreg, name)
+    #R = DataRegion(E, H, idcuts, idreg, name)
+    R = DataRegion(E, H, name)
   end
 
   return R
@@ -137,7 +139,7 @@ function save_poly(R::DataRegion)
   ~isdir(dirpath) && mkdir(dirpath)
 
   filepath = dirpath * delim * R.name
-  (R.idreg ≠ 0) && (filepath *= "_$(R.idreg)")
+  #(R.idreg ≠ 0) && (filepath *= "_$(R.idreg)")
   filepath *= ".poly"
 
   open(filepath, "w") do f
@@ -202,8 +204,6 @@ function saveXYZ(R::DataRegion, dirpath::String)
 
   # file name
   filename = R.name
-  iR = R.idreg
-  (iR ≠ 0) && (filename *= "_$iR")
   # file path
   filepath = dirpath * filename * ".xyz"
   # write contents
@@ -239,8 +239,8 @@ function save_region(R::DataRegion, dirpath::String)
   # unpack region data structure
   E = R.E
   H = R.H
-  idcuts = R.idcuts
-  idreg = R.idreg
+  #idcuts = R.idcuts
+  #idreg = R.idreg
   name = R.name
   # delimiter
   delim = Sys.iswindows() ? "\\" : "/"
@@ -314,6 +314,7 @@ function save_region(R::DataRegion, dirpath::String)
       end
     end
 
+    #=
     if ~isempty(idcuts)
       nc = size(idcuts, 1)
       write(f, "//ncuts $nc\n")
@@ -322,6 +323,7 @@ function save_region(R::DataRegion, dirpath::String)
         write(f, "//" * str * "\n")
       end
     end
+    =#
   end
 end
 
@@ -362,8 +364,8 @@ end
 function ask_save_region(R::DataRegion)
 
   # reset identifier and cuts 
-  R.idreg = 0
-  R.idcuts = Matrix{Int64}(undef, 0, 3)
+  #R.idreg = 0
+  #R.idcuts = Matrix{Int64}(undef, 0, 3)
   # open a window to save file
   filepath = save_file(pwd(); filterlist="xyz")
   # update name

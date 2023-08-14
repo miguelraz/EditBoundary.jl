@@ -7,11 +7,6 @@
 	    	end
 	    end
 
-	    Rcopy = DataRegion( copy(R.E), 
-						  	H,
-		                  	copy(R.idcuts), 
-		                  	R.idreg,
-		                  	R.name 
-		                  	)
+	    Rcopy = DataRegion( copy(R.E), H, R.name )
 	    return Rcopy
 	end
