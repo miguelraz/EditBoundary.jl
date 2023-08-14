@@ -1,11 +1,13 @@
+ #=
 	"""
 	    arclength(C)
 
     Compute the arclength of a polygonal curve C
-	C has 2 columns
 	"""
 	function arclength(C::Matrix{Float64})::Float64 
 
+		# C has only 2 columns
+		@assert size(C)[2] == 2
 		ℓ = 0
 		m = size(C,1)
 		for i = 1:m-1
@@ -20,3 +22,4 @@
     Compute the perimeter of a simply-connected polygonal region
 	"""
 	perimeter(Ω::Matrix{Float64})::Float64 = arclength(Ω) + norm(Ω[end,:]-Ω[1,:])
+	=#

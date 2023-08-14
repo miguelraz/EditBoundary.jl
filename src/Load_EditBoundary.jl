@@ -5,8 +5,6 @@ import Base.range
 # Text input and output
 import Printf: @sprintf
 import DelimitedFiles: readdlm
-import Base64: stringmime
-import Dates: format, now
 # Interactivity using GLMakie
 # only load the necessary routines of GLMakie
 import GLMakie: Observable, Figure, Axis, DataAspect, Keyboard
