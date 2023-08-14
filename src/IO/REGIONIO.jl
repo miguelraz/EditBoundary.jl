@@ -18,40 +18,6 @@ function readXYZ(A)
 end
 
 """
-  readPOLY(A)
-
-Get two-column array of countour points coordinates
-"""
-function readPOLY(A)
-  # number of holes
-  nh = A[1, 1] - 1
-  # number of points of exterior boundary
-  n₀ = A[2, 1]
-  # arreglo para coordenadas del polígono exterior 
-  list = 3:n₀+2
-  E = Float64.(A[list, 1:2])
-  # initate array for coordinates of hole boundary points 
-  H = Dict{Int64,Matrix{Float64}}([])
-
-  # detect holes
-  if nh ≥ 1
-    n₀ += 4
-    # loop for each hole
-    for k = 1:nh
-      # number of hole boundary points
-      n₁ = A[n₀, 1]
-      # two column array for coordinates of hole boundary points
-      list = n₀+1:n₀+n₁
-      H[k] = Float64.(A[list, 1:2])
-      #
-      n₀ += n₁ + 2
-    end
-  end
-
-  return E, H
-end
-
-"""
   readGEO(A)
 
 Get two-column array of countour points coordinates
@@ -62,17 +28,15 @@ function readGEO(A)
 
   id₁ = findfirst(x -> x == "//region", A)
   id₂ = findfirst(x -> x == "//idreg", A)
-  id₃ = findfirst(x -> x == "//nholes", A)
   id₄ = findfirst(x -> x == "//ncuts", A)
   idnp = findall(x -> x == "//npts", A)
-  idht = findall(x -> x == "//holetype", A)
 
   name_array = A[id₁[1], id₁[2]+1:end]
   name = string(strip(join(name_array .* " ")))
   idreg = A[id₂[1], id₂[2]+1]
   ~isa(idreg, Int) && (idreg = 0)
 
-  ls = ['{', '}', ';']
+  ls = ('{', '}', ';')
   H = Dict{Int64,Matrix{Float64}}([])
 
   for k in eachindex(idnp)
@@ -84,19 +48,6 @@ function readGEO(A)
   E = H[0]
   delete!(H, 0)
 
-  if isnothing(id₄)
-    #idcuts = Matrix{Int64}(undef, 0, 2)
-  else
-    nc = A[id₄[1], 2]
-    #idcuts = Matrix{Int64}(undef, nc, 2)
-    counter = 1
-    for i in id₄[1] .+ (1:nc)
-      #idcuts[counter, :] = Int64.(A[i, 2:3])
-      counter += 1
-    end
-  end
-
-  #return DataRegion(E, H, idcuts, idreg, name)
   return DataRegion(E, H, name)
 end
 
@@ -110,18 +61,11 @@ function read_region(path::String="")
 
   if ext == "geo"
     R = readGEO(region_array)
-  else
-    #idreg = 0
-    #idcuts = Matrix{Int64}(undef, 0, 2)
-    #if ext == "con"
-    #  #E, H = readCON(region_array)
-    if ext == "xyz"
+  elseif ext == "xyz"
       E, H = readXYZ(region_array)
-    elseif ext == "poly"
-      E, H = readPOLY(region_array)
-    end
-    #R = DataRegion(E, H, idcuts, idreg, name)
     R = DataRegion(E, H, name)
+  else
+    throw("sorry, file format is not 'geo' or 'xyz'. Can't read.")
   end
 
   return R

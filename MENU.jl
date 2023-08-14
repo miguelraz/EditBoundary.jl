@@ -6,10 +6,10 @@ using EditBoundary
 R = read_region("./src/regions/mexico_water_bodies/Presa La Amistad.xyz")
 #R = EditBoundary.read_demo()
 # check polygon orientation
-reverse_orientation!(R)
+@time reverse_orientation!(R)
 # delete repeated points
-del_repts!(R)
+@time del_repts!(R)
 # check for self-intersecions
-folding(R)
+@time folding(R)
 # open interactive window in GLMakie
 @time edit_boundary(R)
