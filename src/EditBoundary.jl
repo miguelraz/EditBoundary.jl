@@ -112,7 +112,7 @@ include("edit_boundary/MIN_PERIMETER.jl")
 include("edit_boundary/AUTO_SIMPLIFICATION.jl")
 include("edit_boundary/REMOVE_HOLES.jl")
 include("edit_boundary/EDIT_BOUNDARY.jl")
-include("edit_boundary/GET_TOLERANCES_SLIDER_VALUES.jl")
+#include("edit_boundary/GET_TOLERANCES_SLIDER_VALUES.jl")
 #include("edit_boundary/EDITPOLY.jl")
 
 # POINT_ELIMINATION
