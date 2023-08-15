@@ -2,8 +2,8 @@ function remove_holes!(H::Dict{Int64,Matrix{Float64}})
 
     counter = 1
     nH = length(H)
-    display("The Region has more $nH holes")
-    display("Only the 50 largest holes are keep")
+    @info "The Region has more $nH holes"
+    @info "Only the 50 largest holes are keep"
     idholes = Int64.(keys(H))
     hareas = [α(H[iH]) for iH in idholes]
     idh = sortperm(hareas; rev=true)

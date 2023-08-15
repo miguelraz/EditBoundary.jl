@@ -94,7 +94,7 @@ export get_name
 # Gtk_save_dialog, get_dirpath, get_path_red, get_path_msh, get_path mesh, get_path_cut were removed
 export get_path_img, get_path_geo, get_path_region, get_dir
 # REGIONIO - TODO
-export readXYZ, readPOLY, readGEO, read_region, saveXYZ, save_region
+export readXYZ, readGEO, read_region, saveXYZ, save_region
 export ask_save_region, save_new_region
 # DELETE_REPTS
 #export perm_repts, delete_repts

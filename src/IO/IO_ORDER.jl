@@ -7,11 +7,12 @@
 			list = vec(readdlm(filepath, Int64))
 		else
 			list = Int64[]
-			display("NO merging order file was found")
+			@info "NO merging order file was found"
 		end
 		return list
 	end
 
+	#=
 	function save_order(list::Vector{Int64},name::String)
 
 		nR = length(list)
@@ -26,3 +27,4 @@
           end
       	end
 	end
+	=#

@@ -63,7 +63,7 @@ function read_region(path::String="")
     R = readGEO(region_array)
   elseif ext == "xyz"
       E, H = readXYZ(region_array)
-    R = DataRegion(E, H, name)
+      R = DataRegion(E, H, name)
   else
     throw("sorry, file format is not 'geo' or 'xyz'. Can't read.")
   end
@@ -71,51 +71,7 @@ function read_region(path::String="")
   return R
 end
 
-function save_poly(R::DataRegion)
-
-  nH = length(R.H)
-  np = 1 + nH
-
-  delim = Sys.iswindows() ? "\\" : "/"
-  dirpath = pwd() * delim * "tests" * delim * R.name
-  ~isdir(dirpath) && mkdir(dirpath)
-  dirpath *= delim * "poly"
-  ~isdir(dirpath) && mkdir(dirpath)
-
-  filepath = dirpath * delim * R.name
-  #(R.idreg ≠ 0) && (filepath *= "_$(R.idreg)")
-  filepath *= ".poly"
-
-  open(filepath, "w") do f
-    write(f, "$(np)\n")
-    # exterior boundary
-    nE = size(R.E, 1)
-    write(f, "$(nE) out\n")
-    for i = 1:nE
-      x = R.E[i, 1]
-      y = R.E[i, 2]
-      write(f, "$x $y\n")
-    end
-    list = join(string.(1:nE) .* fill(" ", nE)) * "\n"
-    write(f, list)
-    # holes
-    if ~isempty(R.H)
-      for iH = 1:nH
-        nᵢ = size(R.H[iH], 1)
-        write(f, "$(nᵢ) in\n")
-        for i = 1:nᵢ
-          x = R.H[iH][i, 1]
-          y = R.H[iH][i, 2]
-          write(f, "$x $y\n")
-        end
-        list = join(string.(1:nᵢ) .* fill(" ", nᵢ)) * "\n"
-        write(f, list)
-      end
-    end
-  end
-
-  return filepath
-end
+#=
 
 function saveXYZ(R::DataRegion)
   # delimiter
@@ -129,9 +85,7 @@ function saveXYZ(R::DataRegion)
   saveXYZ(R, dirpath)
 end
 
-function saveXYZ(Ω::Union{Matrix{Float64},Matrix{Int64}},
-  name::String,
-  dirpath::String)
+function saveXYZ(Ω::Matrix{T}, name::String, dirpath::String) where T
 
   filepath = dirpath * name * ".xyz"
   open(filepath, "w") do f
@@ -332,3 +286,5 @@ function save_new_region(R::DataRegion)
   save_region(R, dirpath)
   saveXYZ(R, dirpath)
 end
+
+=#

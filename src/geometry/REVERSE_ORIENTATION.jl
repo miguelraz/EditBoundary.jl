@@ -9,8 +9,8 @@
 		αΩ = α(Ω)
 		# reverse orientation for negative area regions
 		if  αΩ < 0
-			display("the orientation is reversed")
-			Ω[2:end,:] .= Ω[end:-1:2,:]
+			@info "the orientation is reversed"
+			Ω[2:end,:] .= @views Ω[end:-1:2,:]
 		end
 	end
 

@@ -196,7 +196,7 @@ function edit_boundary(R0::DataRegion)
     fig, ax, simp_menu, sl, tb, bt_smooth, bt_undo, bt_save =
         figure_layout(Dobs_ini, Dobs_new, slider_range, methods_labels, info_label, string_smooth_tol)
     # show figure
-    display(fig)
+    #display(fig)
     # Press R to reset view
     on(events(fig).keyboardbutton) do event
         if event.action in (Keyboard.press, Keyboard.repeat)
@@ -228,4 +228,5 @@ function edit_boundary(R0::DataRegion)
     lift(sl.value) do per
         poly_simplify!(R0, Rcopy, R, Dobs_new, ax, simp_method, slider_range, tol_range, per)
     end
+    display(fig)
 end

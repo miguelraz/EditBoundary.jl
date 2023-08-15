@@ -9,7 +9,6 @@ function shift(i::Int64, n::Int64)::Int64
     return j
 end
 
-
 """
     del_repts(Ω,ltol)
 
@@ -63,7 +62,7 @@ function del_repts!(R::DataRegion, ltol::Float64=1e-10)
     # count number of points after point elimination
     n_new = get_npts(R)
     n_diff = n_new - n_old
-    n_diff > 0 && display("$n_diff repeated pts deleted")
+    n_diff > 0 && @info "$n_diff repeated pts deleted"
 end
 
 function del_pts(method::F, Ω::Matrix{Float64}, tol::Number) where {F}
@@ -119,6 +118,15 @@ function del_pts(method::F, Ω::Matrix{Float64}, tol::Number) where {F}
     return @views Ω[idx, :]
 end
 
+
+function del_pts!(method::F, R₀::DataRegion, R::DataRegion, tol::Number) where {F}
+    R.E = del_pts(method, R₀.E, tol)
+    if ~isempty(R.H)
+        for k in keys(R.H)
+            R.H[k] = del_pts(method, R₀.H[k], tol)
+        end
+    end
+end
 #=
 function del_pts!(method::F, R::DataRegion, tol::Number) where {F}
     R.E = del_pts(method, R.E, tol)
@@ -129,16 +137,6 @@ function del_pts!(method::F, R::DataRegion, tol::Number) where {F}
     end
 end
 =#
-
-function del_pts!(method::F, R₀::DataRegion, R::DataRegion, tol::Number) where {F}
-    R.E = del_pts(method, R₀.E, tol)
-    if ~isempty(R.H)
-        for k in keys(R.H)
-            R.H[k] = del_pts(method, R₀.H[k], tol)
-        end
-    end
-end
-
 #=
 function del_pts!(R₀::DataRegion,
     slider_range::AbstractVector,

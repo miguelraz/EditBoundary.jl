@@ -4,6 +4,7 @@
 # and read the file into a julia struct
 using EditBoundary
 @info "read_region"
+using Profile
 @time R = read_region("./src/regions/mexico_water_bodies/Presa La Amistad.xyz")
 #R = EditBoundary.read_demo()
 # check polygon orientation
@@ -18,5 +19,3 @@ using EditBoundary
 # open interactive window in GLMakie
 @info "edit_boundary"
 @time edit_boundary(R)
-using Profile
-@profview edit_boundary(R)
