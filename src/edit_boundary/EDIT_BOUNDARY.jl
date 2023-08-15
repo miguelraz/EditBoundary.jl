@@ -150,10 +150,11 @@ end
 
     Polygon simplification by Area or Radius Tests
 """
-function poly_simplify!(R0, Rcopy, R, Dobs, ax, simp_method, slider_range, tol_range, per)
+function poly_simplify!(R0, Rcopy, R, Dobs, ax, simp_method, slider_range, tol)
+    # remove tol_range and change per to tol in the arguments of poly_simplify!
     # get simplification therehold
-    idx = findfirst(x -> x == per, slider_range)
-    simp_tol = tol_range[idx]
+    idx = findfirst(x -> x == tol, slider_range)
+    simp_tol = slider_range[idx]
     # simplification
     if simp_method[] == "Radius test"
         del_pts!(radiusine, Rcopy, R, simp_tol)
@@ -178,8 +179,11 @@ function edit_boundary(R0::DataRegion)
     # create two copies of the region
     R = copy_region(R0)
     Rcopy = copy_region(R)
+    # remove GET_TOLERANCES_SLIDER_VALUES
+    # change tol_Range to slider_range
+    # changes in undo_approx!, poly_simplify! and edit_boundary, 
     # get simplification percentages and their corresponding tolerances
-    slider_range, tol_range = get_tolerances_slider_values(R0)
+    slider_range = [100:-10:10; 8:-2:2; 0.8:-0.2:0.2; 0.08:-0.02:0.02]
     # get comparison label
     info_label = comparison_label(R0, R)
     # labels for simplification methods
@@ -224,9 +228,11 @@ function edit_boundary(R0::DataRegion)
     on(bt_smooth.clicks) do _
         poly_smoothing!(R0, Rcopy, R, Dobs_new, ax, smooth_tol)
     end
-    # move slider for polygon simplification        	
-    lift(sl.value) do per
-        poly_simplify!(R0, Rcopy, R, Dobs_new, ax, simp_method, slider_range, tol_range, per)
+    # move slider for polygon simplification
+    # change per to tol        	
+    lift(sl.value) do tol
+        # remove tol_range and change per to tol in the arguments of poly_simplify!
+        poly_simplify!(R0, Rcopy, R, Dobs_new, ax, simp_method, slider_range, tol)
     end
     display(fig)
 end
