@@ -14,7 +14,7 @@ Printf = "de0858da-6303-5e67-8744-51eddeeeb8d7"
 
 [compat]
 DelimitedFiles = "1.8.5"
-GLMakie = "0.8.4"
+GLMakie = "0.8.8"
 GeometryBasics = "0.4.6"
 NativeFileDialog = "0.2.1"
 Optim = "1.7.5"
