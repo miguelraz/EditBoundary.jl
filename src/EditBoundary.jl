@@ -54,8 +54,6 @@ include("geometry/triangle_measures.jl") # used by RadiusSine and AreaSine
 # IO
 include("io/copy_region.jl")
 export copy_region
-include("io/io_order.jl")
-export read_order, save_order
 include("io/regionio.jl")
 export readXYZ, readGEO, read_region, saveXYZ, save_region
 export ask_save_region, save_new_region
