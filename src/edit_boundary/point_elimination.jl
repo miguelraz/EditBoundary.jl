@@ -9,62 +9,6 @@ function shift(i::Int64, n::Int64)::Int64
     return j
 end
 
-"""
-    del_repts(Ω,ltol)
-
-Delete repeated points in a polygon using the length of segments 
-"""
-function del_repts(Ω::Matrix{Float64}, ltol::Float64)::Matrix{Float64}
-    pΩ = 0.0
-    nΩ = size(Ω, 1)
-    lvec = zeros(nΩ)
-    # loop on vertices
-    for k = 1:nΩ-1
-        dx = Ω[k+1, 1] - Ω[k, 1]
-        dy = Ω[k+1, 2] - Ω[k, 2]
-        # length of segment
-        lvec[k] = √(dx * dx + dy * dy)
-        # update perimeter of region
-        pΩ += lvec[k]
-    end
-    dx = Ω[1, 1] - Ω[nΩ, 1]
-    dy = Ω[1, 2] - Ω[nΩ, 2]
-    lvec[nΩ] = √(dx * dx + dy * dy)
-    pΩ += lvec[nΩ]
-    # scaling
-    lvec ./= pΩ
-    # find repeated points
-    idrep = findall(x -> x ≤ ltol, lvec)
-    # indexes of non-repeated points
-    idx = setdiff(1:nΩ, idrep)
-    # delete repeated points
-    return @views Ω[idx, :]
-end
-
-"""
-    del_repts!(R,ltol)
-
-Delete repeated points in a polygon using the length of segments 
-"""
-function del_repts!(R::DataRegion, ltol::Float64=1e-10)
-    # count number of points before point elimination
-    n_old = get_npts(R)
-    # delete repeated points in the exterior boundary
-    R.E = del_repts(R.E, ltol)
-    # detect holes
-    if ~isempty(R.H)
-        # loop on holes
-        for k in keys(R.H)
-            # delete repeated points in each hole
-            R.H[k] = del_repts(R.H[k], ltol)
-        end
-    end
-    # count number of points after point elimination
-    n_new = get_npts(R)
-    n_diff = n_new - n_old
-    n_diff > 0 && @info "$n_diff repeated pts deleted"
-end
-
 function del_pts(method::F, Ω::Matrix{Float64}, tol::Number) where {F}
 
     n = size(Ω, 1)
