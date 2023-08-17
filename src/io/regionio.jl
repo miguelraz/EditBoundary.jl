@@ -53,7 +53,7 @@ end
 
 function read_region(path::String="")
   if isempty(path)
-    path = get_path_region()
+    path = pick_file(pwd(); filterlist="geo,xyz")
   end
 
   name, ext = basename(path) |> splitext

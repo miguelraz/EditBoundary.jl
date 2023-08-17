@@ -25,40 +25,39 @@ export bnd2obs, bnd2obsp
 include("contour_creator/bnd_windict.jl")
 export region_window
 
-# Geometry
-include("geometry/area.jl")
-export J₂, αk
-include("geometry/get_npts.jl")
-export get_npts
-include("geometry/folding.jl")
-export folding
-include("geometry/distseg.jl")
-export distseg
-include("geometry/triangle_measures.jl") # used by RadiusSine and AreaSine
-include("geometry/fg_perimeter.jl")
-export gety, getxy, perim, ∂perim, fg!
-include("geometry/reverse_orientation.jl")
-export reverse_orientation!
-
-# IO
-include("io/get_path.jl")
-export get_path_region
-include("io/regionio.jl")
-export readXYZ, readGEO, read_region, saveXYZ, save_region
-export ask_save_region, save_new_region
-include("io/copy_region.jl")
-export copy_region
-include("io/io_order.jl")
-export read_order, save_order
 
 # Edit Boundary
-include("edit_boundary/point_elimination.jl")
-export remove!, areas, areasine, radiusine, carnot, del_pts, del_pts!, del_repts! 
-include("edit_boundary/min_perimeter.jl")
-export min_perimeter, min_perimeter!
 include("edit_boundary/auto_simplification.jl")
 export auto_simp, auto_simp!
 include("edit_boundary/edit_boundary.jl")
 export edit_boundary
+include("edit_boundary/min_perimeter.jl")
+export min_perimeter, min_perimeter!
+include("edit_boundary/point_elimination.jl")
+export remove!, areas, areasine, radiusine, carnot, del_pts, del_pts!, del_repts! 
+
+# Geometry
+include("geometry/area.jl")
+export J₂, αk
+include("geometry/distseg.jl")
+export distseg
+include("geometry/fg_perimeter.jl")
+export gety, getxy, perim, ∂perim, fg!
+include("geometry/folding.jl")
+export folding
+include("geometry/get_npts.jl")
+export get_npts
+include("geometry/reverse_orientation.jl")
+export reverse_orientation!
+include("geometry/triangle_measures.jl") # used by RadiusSine and AreaSine
+
+# IO
+include("io/copy_region.jl")
+export copy_region
+include("io/io_order.jl")
+export read_order, save_order
+include("io/regionio.jl")
+export readXYZ, readGEO, read_region, saveXYZ, save_region
+export ask_save_region, save_new_region
 
 end

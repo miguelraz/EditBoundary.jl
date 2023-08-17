@@ -1,1 +1,0 @@
-get_path_region() = pick_file(pwd(); filterlist="geo,xyz")
