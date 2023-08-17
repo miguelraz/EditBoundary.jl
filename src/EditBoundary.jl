@@ -41,10 +41,8 @@ include("geometry/reverse_orientation.jl")
 export reverse_orientation!
 
 # IO
-#include("io/get_name.jl")
-#export get_name
 include("io/get_path.jl")
-export get_path_img, get_path_geo, get_path_region, get_dir
+export get_path_region
 include("io/regionio.jl")
 export readXYZ, readGEO, read_region, saveXYZ, save_region
 export ask_save_region, save_new_region
