@@ -1,4 +1,5 @@
 module EditBoundary
+#__precompile__(false)
 
 #############################################
 #  Julia Packages
@@ -63,7 +64,7 @@ export gety, getxy, perim, ∂perim, fg!
 # FIND_SMALL_ANGLES 
 #export modn
 # FOLDING 
-export folding
+#export folding
 # GET_ANGLES 
 #export get_cos, get_angle
 # GET_NPTS 
@@ -112,7 +113,6 @@ include("edit_boundary/MIN_PERIMETER.jl")
 include("edit_boundary/AUTO_SIMPLIFICATION.jl")
 include("edit_boundary/REMOVE_HOLES.jl")
 include("edit_boundary/EDIT_BOUNDARY.jl")
-#include("edit_boundary/GET_TOLERANCES_SLIDER_VALUES.jl")
 #include("edit_boundary/EDITPOLY.jl")
 
 # POINT_ELIMINATION
@@ -127,10 +127,9 @@ export auto_simp, auto_simp!
 export remove_holes!
 # EDIT_BOUNDARY
 export edit_boundary
-# GET_TOLERANCES_SLIDER_VALUES
-export tol2per, get_tolerances_slider_values
 # EDIT_POLY
 # TODO - WTF IS THIS
 #export edit_bnd3
+#
 
 end

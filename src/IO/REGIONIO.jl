@@ -71,7 +71,6 @@ function read_region(path::String="")
   return R
 end
 
-#=
 
 function saveXYZ(R::DataRegion)
   # delimiter
@@ -286,5 +285,3 @@ function save_new_region(R::DataRegion)
   save_region(R, dirpath)
   saveXYZ(R, dirpath)
 end
-
-=#

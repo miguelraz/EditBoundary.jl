@@ -38,7 +38,7 @@ function del_repts(Ω::Matrix{Float64}, ltol::Float64)::Matrix{Float64}
     # indexes of non-repeated points
     idx = setdiff(1:nΩ, idrep)
     # delete repeated points
-    return Ω[idx, :]
+    return @views Ω[idx, :]
 end
 
 """

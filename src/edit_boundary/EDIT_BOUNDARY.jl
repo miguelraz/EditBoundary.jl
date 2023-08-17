@@ -103,10 +103,14 @@ function comparison_label(R0::DataRegion, R::DataRegion)
     perim_old = @sprintf "%1.2e" perim(vec(R0.E)) # for the initial region
     perim_new = @sprintf "%1.2e" perim(vec(R.E))  # for the approximation
     # get label
-    label = R0.name
-    label *= " | $nH Holes | $n of $n0 pts | $(per_delpts) % deleted pts "
-    label *= " | perimeter: $(perim_old) to $(perim_new)"
-    return label
+    io = IOBuffer()
+    #label = R0.name
+    print(io, R0.name)
+    #label *= " | $nH Holes | $n of $n0 pts | $(per_delpts) % deleted pts "
+    print(io," | ",nH, " Holes | ",n, " of ", n0, " pts | ", per_delpts," % deleted pts ")
+    #label *= " | perimeter: $(perim_old) to $(perim_new)"
+    print(io, " | perimeter: ", perim_old," to ",perim_new)
+    return String(take!(io))
 end
 
 """
