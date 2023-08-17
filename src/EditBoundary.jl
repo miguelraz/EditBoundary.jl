@@ -21,7 +21,7 @@ using LinearAlgebra: norm
 using Optim
 
 # load the main data structure
-include("data_structures/DATA_UNAMALLA.jl")
+include("data_structures/dataregion.jl")
 export DataRegion
 # load routines for our figure layout in GLMakie 
 include("contour_creator/obs2xy.jl")
