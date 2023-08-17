@@ -4,9 +4,7 @@
 
 	Compute cos(Q) in the triangle PQR using the dot product
 	"""
-	function get_cos(P::Vector{Float64},
-					 Q::Vector{Float64},
-					 R::Vector{Float64})
+	function get_cos(P::AbstractVector{T}, Q::AbstractVector{T}, R::AbstractVector{T}) where T
 
 		# vectors with starting point in Q
 	    v = P-Q
@@ -30,14 +28,14 @@
 
 	Area of triangle PQR
 	"""
-	areas(P::Vector{Float64}, Q::Vector{Float64}, R::Vector{Float64}) = 0.5abs(α(P,Q,R))
+	areas(P::AbstractVector{T}, Q::AbstractVector{T}, R::AbstractVector{T}) where T = 0.5abs(α(P,Q,R))
 
 	"""
 	    areasine(P,Q,R)
 
 	Area of triangle PQR weighted by the sine of the interior angle
 	"""
-	function areasine(P::Vector{Float64},Q::Vector{Float64},R::Vector{Float64})
+	function areasine(P::AbstractVector{T},Q::AbstractVector{T},R::AbstractVector{T}) where T
 	    # Compute cos(Q) using the dot product
 	    s  = get_cos(P,Q,R)
         # sin(Q) =√1-cos(Q)²
@@ -68,4 +66,4 @@
         return s 
 	end
 
-carnot(P::Vector{Float64},Q::Vector{Float64},R::Vector{Float64}) = get_cos(P,Q,R) + get_cos(Q,R,P) + get_cos(R,P,Q) - 1
+carnot(P::AbstractVector{T},Q::AbstractVector{T},R::AbstractVector{T}) where T = get_cos(P,Q,R) + get_cos(Q,R,P) + get_cos(R,P,Q) - 1

@@ -1,4 +1,4 @@
-#= TODO - implement Bentley-Ortmann or better algorithm
+# TODO - implement Bentley-Ortmann or better algorithm
 function seg_intersect(p::Vector{Float64},
     q::Vector{Float64},
     r::Vector{Float64},
@@ -89,4 +89,3 @@ function folding(R::DataRegion, iflag::Bool=false)
 
     return iflag
 end
-=#

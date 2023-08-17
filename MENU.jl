@@ -17,5 +17,5 @@ using EditBoundary
 # open interactive window in GLMakie
 @info "edit_boundary"
 @time edit_boundary(R)
-using Profile
-@profview edit_boundary(R)
+#using Profile
+#@profview edit_boundary(R)

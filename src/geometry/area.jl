@@ -4,14 +4,14 @@
 
   Linear Map: (x₁,x₂) ↦ (x₂,-x₁).
   """
-  J₂(x::Vector{Float64})::Vector{Float64} = [x[2]; -x[1]]
+  J₂(x::AbstractVector{T}) where T = [x[2]; -x[1]]
 
   """
     α(P,Q,R)
 
   Evaluation of the area functional at the triangle PQR.
   """
-  α(P::Vector{Float64}, Q::Vector{Float64}, R::Vector{Float64}) =
+  α(P::AbstractVector{T}, Q::AbstractVector{T}, R::AbstractVector{T}) where T =
   (Q[1]-P[1])*(R[2]-P[2]) + (Q[2]-P[2])*(P[1]-R[1])
 
   """
