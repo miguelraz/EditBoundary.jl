@@ -11,7 +11,7 @@
 
   Evaluation of the area functional at the triangle PQR.
   """
-  α(P::Vector{Float64}, Q::Vector{Float64}, R::Vector{Float64}) =
+  α(P::AbstractVector{T}, Q::AbstractVector{T}, R::AbstractVector{T}) where T =
   (Q[1]-P[1])*(R[2]-P[2]) + (Q[2]-P[2])*(P[1]-R[1])
 
   """

@@ -8,8 +8,8 @@ using Profile
 @time R = read_region("./src/regions/mexico_water_bodies/Presa La Amistad.xyz")
 #R = EditBoundary.read_demo()
 # check polygon orientation
-@info "reverse_orientation"
-@time reverse_orientation!(R)
+# @info "reverse_orientation"
+# @time reverse_orientation!(R)
 # delete repeated points
 @info "del_repts"
 @time del_repts!(R)
