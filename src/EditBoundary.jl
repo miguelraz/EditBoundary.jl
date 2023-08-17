@@ -47,8 +47,6 @@ include("geometry/folding.jl")
 export folding
 include("geometry/get_npts.jl")
 export get_npts
-include("geometry/reverse_orientation.jl")
-export reverse_orientation!
 include("geometry/triangle_measures.jl") # used by RadiusSine and AreaSine
 
 # IO
