@@ -56,12 +56,12 @@ function read_region(path::String="")
     path = get_path_region()
   end
 
-  name, ext = get_name(path)
+  name, ext = basename(path) |> splitext
   region_array = readdlm(path)
 
-  if ext == "geo"
+  if ext == ".geo"
     R = readGEO(region_array)
-  elseif ext == "xyz"
+  elseif ext == ".xyz"
       E, H = readXYZ(region_array)
       R = DataRegion(E, H, name)
   else
