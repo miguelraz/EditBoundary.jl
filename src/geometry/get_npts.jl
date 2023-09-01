@@ -1,1 +1,1 @@
-get_npts(R::DataRegion) = size(R.E, 1) + sum(n for n in values(R.H); init = 0)
+get_npts(R::DataRegion) = size(R.E, 1) + sum(size(H,1) for H in values(R.H); init = 0)
