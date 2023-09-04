@@ -1,6 +1,7 @@
 using EditBoundary
 using Test
 
+#=
 @testset "EditBoundary" begin
     @testset "Geometry" begin
         @testset "Area" begin
@@ -20,6 +21,32 @@ using Test
             end
         end
     end
+end
+=#
+
+@testset "EditBoundary" begin
+    @testset "geometry" begin
+        @info "run get_npts test"
+        @testset "get_npts" begin 
+            # the exterior boundary is a pentagon 
+            E = [-1 -2; 1 -2; 2 0; 0 2; -2 0]
+            # two holes: one hole is a square, and the other is a triangle
+            H = Dict(1 => [-0.5 -1; -0.5 -1.5; 0 -1.5; 0 -1], 2 => [0 0; 0.5 0; 0 0.5])
+            # new DataRegion
+            R = DataRegion(E,H,"poly3")
+            # the sum of points in a pentagon, a square, and a triangle is twelve 
+            @test get_npts(R) == 12
+            # the triangle is removed
+            delete!(H,2)
+            # the sum of points in a pentagon and a square is nine 
+            @test get_npts(R) == 9
+            # the square is removed, so no more holes
+            delete!(H,1)
+            # now we have only the fivepoints of the pentagon 
+            @test get_npts(R) == 5
+        end
+        @info "get_npts test finish"
+    end 
 end
 
 
