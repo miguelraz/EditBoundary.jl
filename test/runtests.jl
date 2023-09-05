@@ -44,7 +44,6 @@ end
             # now we have only the fivepoints of the pentagon 
             @test get_npts(R) == 5
         end
-        @info "get_npts test finish"
     end 
 end
 
