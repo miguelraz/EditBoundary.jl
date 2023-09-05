@@ -26,7 +26,6 @@ end
 
 @testset "EditBoundary" begin
     @testset "geometry" begin
-        @info "run get_npts test"
         @testset "get_npts" begin 
             # the exterior boundary is a pentagon 
             E = [-1 -2; 1 -2; 2 0; 0 2; -2 0]
