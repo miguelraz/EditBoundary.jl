@@ -46,6 +46,8 @@ include("geometry/fg_perimeter.jl")
 export gety, getxy, perim, ∂perim, fg!
 #include("geometry/folding.jl")
 #export folding
+include("geometry/del_repts.jl")
+export del_repts
 include("geometry/get_npts.jl")
 export get_npts
 include("geometry/triangle_measures.jl") # used by RadiusSine and AreaSine

@@ -6,19 +6,12 @@ Compute cos(Q) in the triangle PQR using the dot product
 """
 function get_cos(P::AbstractVector{T}, Q::AbstractVector{T}, R::AbstractVector{T}) where {T}
 
-    @error "Unique! should work but it does not - must fix!"
-    @error "P[1] and Q[1] sometimes are identical, must erase them!"
-    unique!(P)
-    unique!(Q)
-    unique!(R)
-    # vectors with starting point in Q
+    # differences
     v = P - Q
     u = R - Q
     # normalization
-    #v ≠ 0 && (v /= √(v'v))
-    v ≠ 0 && (v = normalize(v))
-    #u ≠ 0 && (u /= √(u'u))
-    u ≠ 0 && (u = normalize(u))
+    v = normalize(v)
+    u = normalize(v)
     # dot product 
     uᵀv = u'v
     # dot product in the interval [-1,1]
@@ -41,13 +34,6 @@ Area of triangle PQR weighted by the sine of the interior angle
 function areasine(P::AbstractVector{T}, Q::AbstractVector{T}, R::AbstractVector{T}) where {T}
     # Compute cos(Q) using the dot product
     s = get_cos(P, Q, R)
-    # TODO - function fails on subsequent identical entries in P, Q, or in S
-    if isnan(s)
-        @info "get_cos is NaN"
-        @info P
-        @info Q
-        @info R
-    end
     # sin(Q) =√1-cos(Q)²
     s = √(1.0 - s * s)
     # Compute area of the triangle PQR and multiply it
