@@ -18,3 +18,10 @@
 
 ## Dudas
 - `del_pts!`
+------------
+Minuta 30 enero 2024
+1. Miguel Reescribe IO con ArchGDAL.jl
+2. Ivan lee https://juliaearth.github.io/geospatial-data-science-with-julia y explica min_perim y amigos
+3. Procesamiento sin GUI
+4. MakieDraw.jl, MeshIO.jl 
+5. Subir al ArXiv
