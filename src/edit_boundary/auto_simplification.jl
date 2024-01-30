@@ -1,4 +1,4 @@
-
+#=
 """
     auto_simplification(Ω,tolsmt,tolcol,tolrad)
 
@@ -56,3 +56,4 @@ function auto_simp!(R₀::DataRegion,
         end
     end
 end
+=#

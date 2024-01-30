@@ -10,7 +10,7 @@ using EditBoundary
 #@info "del_repts"
 #@time del_repts!(R)
 # check for self-intersecions
-@time folding(R)
+#@time folding(R)
 # open interactive window in GLMakie
 @info "edit_boundary"
 @time edit_boundary(R)

@@ -1,4 +1,4 @@
-
+#=
 """
     distseg(a,b,p)
 
@@ -18,3 +18,4 @@ function distseg(a::AbstractVector{T}, b::AbstractVector{T}, p::AbstractVector{T
     return norm(p - proy)
 end
 distseg(C::Matrix{Float64}, i::Int64, p::Int64, q::Int64) = @views distseg(C[p, :], C[q, :], C[i, :])
+=#

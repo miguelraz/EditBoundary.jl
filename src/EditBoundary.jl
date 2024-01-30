@@ -1,4 +1,5 @@
 module EditBoundary
+__precompile__(false)
 
 # Text input and output
 import Printf: @sprintf
@@ -12,7 +13,7 @@ import GeometryBasics.Point, GeometryBasics.Point2f
 
 # To pick and open files
 using NativeFileDialog
-using LinearAlgebra: norm
+using LinearAlgebra: norm, normalize
 using Optim
 
 # Data Structures
@@ -27,24 +28,24 @@ export region_window
 
 
 # Edit Boundary
-include("edit_boundary/auto_simplification.jl")
-export auto_simp, auto_simp!
+#include("edit_boundary/auto_simplification.jl")
+#export auto_simp, auto_simp!
 include("edit_boundary/edit_boundary.jl")
 export edit_boundary
 include("edit_boundary/min_perimeter.jl")
 export min_perimeter, min_perimeter!
 include("edit_boundary/point_elimination.jl")
-export remove!, areas, areasine, radiusine, carnot, del_pts, del_pts!, del_repts! 
+export remove!, areas, areasine, radiusine, carnot, del_pts, del_pts!, del_repts!
 
 # Geometry
 include("geometry/area.jl")
 export J₂, αk
-include("geometry/distseg.jl")
-export distseg
+#include("geometry/distseg.jl")
+#export distseg
 include("geometry/fg_perimeter.jl")
 export gety, getxy, perim, ∂perim, fg!
-include("geometry/folding.jl")
-export folding
+#include("geometry/folding.jl")
+#export folding
 include("geometry/get_npts.jl")
 export get_npts
 include("geometry/triangle_measures.jl") # used by RadiusSine and AreaSine

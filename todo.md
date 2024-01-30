@@ -1,7 +1,7 @@
 # Metas
 
-* ~~PkgTemplate~~
-* ~~No mas PlotlyJS~~
+* [X] ~~PkgTemplate~~
+* [X] ~~No mas PlotlyJS~~
   * ~~Todo en Makie~~
   * GeometryBasics.jl en vez de Makie.jl
   * ~~1 sola ventana~~
