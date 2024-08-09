@@ -11,8 +11,6 @@ import GLMakie: Menu, Label, events, on, lift, Slider, Button, Textbox
 import GLMakie: hidespines!, lines!, reset_limits!, set_close_to!
 import GeometryBasics.Point, GeometryBasics.Point2f
 
-# To pick and open files
-using NativeFileDialog
 using LinearAlgebra: norm, normalize
 using Optim
 

@@ -51,11 +51,7 @@ function readGEO(A)
   return DataRegion(E, H, name)
 end
 
-function read_region(path::String="")
-  if isempty(path)
-    path = pick_file(pwd(); filterlist="geo,xyz")
-  end
-
+function read_region(path::String)
   name, ext = basename(path) |> splitext
   region_array = readdlm(path)
 
