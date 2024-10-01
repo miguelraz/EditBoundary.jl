@@ -44,6 +44,16 @@ end
             # now we have only the fivepoints of the pentagon 
             @test get_npts(R) == 5
         end
+        @testset "get_cos" begin 
+            P = [4.0,1.0]; Q = [3.0,2.0]; R = [0.0,-1.0]
+            @test izero(get_npts(P,Q,R)) 
+        end
+        @testset "del_repts" begin
+            R = DataRegion([1 1;1 1; 3 4; 3 5], Dict(1=> [0 0;0 0; 1 2; 1.3 5.1]), "prueba")
+            del_repts!(R)
+            @test R.E == [1 1; 3 4; 3 5]
+            @test R.H == Dict(1=> [0 0; 1 2; 1.3 5.1])
+        end 
     end 
 end
 
